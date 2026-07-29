@@ -5,3 +5,5 @@ node_modules/
 .npm-cache/
 .next-dev-*.log
 .next-dev-*.err.log
+
+VERCEL_IMPORT.env
