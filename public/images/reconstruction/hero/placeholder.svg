@@ -1,0 +1,13 @@
+<svg width="1320" height="980" viewBox="0 0 1320 980" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder for real old house photo</title>
+  <desc id="desc">Neutral placeholder. Replace with a real project photograph.</desc>
+  <rect width="1320" height="980" fill="#E6DED1"/>
+  <path d="M0 760H1320V980H0V760Z" fill="#D2C7B8"/>
+  <path d="M268 592L660 302L1052 592V760H268V592Z" fill="#C2B5A2"/>
+  <path d="M660 302L1094 624L1052 662L660 372L268 662L226 624L660 302Z" fill="#8F4F36"/>
+  <rect x="434" y="542" width="144" height="218" fill="#9D8F7D"/>
+  <rect x="742" y="542" width="144" height="150" fill="#9D8F7D"/>
+  <path d="M468 576H544V760H468V576Z" fill="#E6DED1"/>
+  <path d="M774 574H854V660H774V574Z" fill="#E6DED1"/>
+  <text x="660" y="858" text-anchor="middle" fill="#6F675B" font-family="Arial, sans-serif" font-size="34">Здесь будет фотография реального объекта</text>
+</svg>

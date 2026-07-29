@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atelier Sweet Home - visual directions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;700&family=IBM+Plex+Serif:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f3eb;
+      --chalk: #ede7dc;
+      --ink: #1b1a17;
+      --muted: #6f665c;
+      --line: #cfc4b6;
+      --brick: #9f3f2f;
+      --oxblood: #5c231c;
+      --carbon: #151412;
+      --ash: #d9d2c7;
+      --moss: #59614a;
+      --font-serif: "IBM Plex Serif", Georgia, serif;
+      --font-sans: "IBM Plex Sans", Arial, sans-serif;
+      --font-mono: "JetBrains Mono", Consolas, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #201f1c;
+      color: var(--ink);
+      font-family: var(--font-sans);
+      line-height: 1.45;
+    }
+
+    .board-header {
+      padding: 28px clamp(18px, 4vw, 52px);
+      color: #f3eee5;
+      border-bottom: 1px solid rgba(243, 238, 229, 0.18);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .board-header h1 {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .board-header p {
+      margin: 8px 0 0;
+      color: #cfc4b6;
+      max-width: 760px;
+    }
+
+    .board-header code {
+      color: #f0d6bd;
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .directions {
+      display: grid;
+      gap: 28px;
+      padding: 28px clamp(18px, 4vw, 52px) 48px;
+    }
+
+    .direction {
+      min-height: 740px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: var(--paper);
+    }
+
+    .direction-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      border-bottom: 1px solid currentColor;
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 1px solid currentColor;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .text-link {
+      color: inherit;
+      text-underline-offset: 5px;
+    }
+
+    .caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: inherit;
+      opacity: 0.72;
+    }
+
+    /* Direction A */
+    .field-notebook {
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .field-notebook .direction-label {
+      color: var(--muted);
+      border-color: var(--line);
+    }
+
+    .field-shell {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: 1fr minmax(320px, 0.82fr);
+    }
+
+    .field-photo {
+      position: relative;
+      min-height: 690px;
+      border-right: 1px solid var(--line);
+    }
+
+    .field-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(27, 26, 23, 0.35));
+      pointer-events: none;
+    }
+
+    .field-photo .caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      color: #fff6ea;
+    }
+
+    .field-copy {
+      padding: clamp(28px, 6vw, 74px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .field-copy h2 {
+      max-width: 720px;
+      margin: 34px 0 0;
+      font-family: var(--font-serif);
+      font-size: clamp(42px, 6.4vw, 88px);
+      line-height: 0.98;
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .field-copy .lead {
+      max-width: 580px;
+      margin: 24px 0 0;
+      color: #453f38;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.38;
+    }
+
+    .field-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 22px;
+      align-items: center;
+      margin-top: 34px;
+    }
+
+    .field-actions .button {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .field-notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .field-notes span {
+      padding: 14px 12px 0 0;
+    }
+
+    /* Direction B */
+    .masonry-cut {
+      background: var(--carbon);
+      color: #f1ece3;
+    }
+
+    .masonry-cut .direction-label {
+      color: #d0c6bb;
+      border-color: rgba(241, 236, 227, 0.22);
+    }
+
+    .masonry-shell {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: minmax(300px, 0.78fr) 1fr;
+      padding: clamp(18px, 3vw, 36px);
+      gap: clamp(18px, 3vw, 34px);
+    }
+
+    .masonry-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(241, 236, 227, 0.2);
+      padding: clamp(22px, 4vw, 48px);
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    .masonry-copy .brand-line {
+      color: #b6ab9f;
+    }
+
+    .masonry-copy h2 {
+      margin: 58px 0 0;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: clamp(44px, 6.3vw, 96px);
+      line-height: 0.93;
+      letter-spacing: 0;
+      max-width: 660px;
+    }
+
+    .masonry-copy .lead {
+      max-width: 540px;
+      color: #d7cbbd;
+      font-size: clamp(17px, 1.8vw, 22px);
+      margin: 24px 0 0;
+    }
+
+    .masonry-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .masonry-actions .button {
+      color: #f8efe3;
+      border-color: var(--brick);
+      background: var(--brick);
+    }
+
+    .masonry-photo-grid {
+      display: grid;
+      grid-template-rows: 1fr 0.5fr;
+      gap: 14px;
+      min-height: 640px;
+    }
+
+    .masonry-photo-main,
+    .masonry-photo-row figure {
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid rgba(241, 236, 227, 0.2);
+      position: relative;
+    }
+
+    .masonry-photo-main .caption,
+    .masonry-photo-row .caption {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      color: #fff7ec;
+      background: rgba(21, 20, 18, 0.62);
+      padding: 5px 7px;
+    }
+
+    .masonry-photo-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Direction C */
+    .material-ledger {
+      background: #f9f8f4;
+      color: #171716;
+    }
+
+    .material-ledger .direction-label {
+      color: #56524d;
+      border-color: #c8c0b5;
+    }
+
+    .ledger-shell {
+      min-height: 690px;
+      display: grid;
+      grid-template-columns: 0.58fr 1fr;
+      border-top: 1px solid #c8c0b5;
+    }
+
+    .ledger-aside {
+      border-right: 1px solid #c8c0b5;
+      padding: clamp(22px, 4vw, 44px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 34px;
+    }
+
+    .ledger-aside h2 {
+      margin: 34px 0 0;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(38px, 5.8vw, 76px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .ledger-aside .lead {
+      color: #46423d;
+      font-size: clamp(17px, 1.8vw, 21px);
+      margin: 22px 0 0;
+      max-width: 520px;
+    }
+
+    .ledger-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px 22px;
+      margin-top: 28px;
+    }
+
+    .ledger-actions .button {
+      background: var(--oxblood);
+      color: #fff8ee;
+      border-color: var(--oxblood);
+    }
+
+    .ledger-facts {
+      display: grid;
+      gap: 1px;
+      background: #c8c0b5;
+      border: 1px solid #c8c0b5;
+    }
+
+    .ledger-fact {
+      background: #f9f8f4;
+      padding: 13px 14px;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .ledger-fact b {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--brick);
+    }
+
+    .ledger-fact span {
+      color: #4d4841;
+      font-size: 14px;
+    }
+
+    .ledger-main {
+      display: grid;
+      grid-template-columns: 1fr 0.72fr;
+      gap: 1px;
+      background: #c8c0b5;
+    }
+
+    .ledger-main figure {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .ledger-main .hero-tall {
+      min-height: 690px;
+    }
+
+    .ledger-stack {
+      display: grid;
+      gap: 1px;
+    }
+
+    .ledger-stack figure {
+      min-height: 229px;
+    }
+
+    .ledger-main .caption {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      color: #fff8ee;
+      background: rgba(23, 23, 22, 0.66);
+      padding: 6px 8px;
+    }
+
+    .recommendation {
+      margin: 0 clamp(18px, 4vw, 52px) 48px;
+      padding: 22px;
+      background: #f3eee5;
+      color: #201f1c;
+      border: 1px solid #cfc4b6;
+    }
+
+    .recommendation h2 {
+      margin: 0 0 8px;
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 500;
+    }
+
+    .recommendation p {
+      margin: 0;
+      max-width: 960px;
+      color: #4e473f;
+    }
+
+    @media (max-width: 920px) {
+      .board-header {
+        display: block;
+      }
+
+      .field-shell,
+      .masonry-shell,
+      .ledger-shell,
+      .ledger-main {
+        grid-template-columns: 1fr;
+      }
+
+      .field-photo,
+      .masonry-photo-grid,
+      .ledger-main .hero-tall {
+        min-height: 420px;
+      }
+
+      .field-photo {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .masonry-shell {
+        padding: 14px;
+      }
+
+      .ledger-aside {
+        border-right: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .direction {
+        min-height: auto;
+      }
+
+      .field-notes,
+      .masonry-photo-row,
+      .ledger-fact {
+        grid-template-columns: 1fr;
+      }
+
+      .board-header,
+      .directions {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="board-header">
+    <div>
+      <h1>Atelier Sweet Home</h1>
+      <p>Три визуальных направления для страницы реконструкции. Это не финальный сайт, а выбор подхода перед версткой.</p>
+    </div>
+    <code>Gary/GStack + frontend-design + real photos</code>
+  </header>
+
+  <main class="directions">
+    <section class="direction field-notebook" aria-label="Direction A Field Notebook">
+      <div class="direction-label">
+        <span>A / Field Notebook</span>
+        <span>тихо, ремесленно, доверительно</span>
+      </div>
+      <div class="field-shell">
+        <figure class="field-photo">
+          <img class="photo" src="public/images/reconstruction/hero/old-house-stone-facade.jpg" alt="Старый каменный дом с деревянной верандой">
+          <figcaption class="caption">реальный дом / камень, кирпич, дерево, старые проемы</figcaption>
+        </figure>
+        <div class="field-copy">
+          <div>
+            <div class="brand-line">
+              <span>Atelier Sweet Home</span>
+              <span>RU / EN / GE</span>
+            </div>
+            <h2>Старый дом может стать теплым, светлым и удобным, сохранив свой характер.</h2>
+            <p class="lead">Смотрим старые дома в Грузии и помогаем понять, что сохранить, что усилить и что заменить.</p>
+            <div class="field-actions">
+              <a class="button" href="#recommendation">Прислать фото дома</a>
+              <a class="text-link" href="#recommendation">Что можно понять по фото</a>
+            </div>
+          </div>
+          <div class="field-notes">
+            <span>камень и кладка</span>
+            <span>крыша и влага</span>
+            <span>дерево и проемы</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="direction masonry-cut" aria-label="Direction B Masonry Cut">
+      <div class="direction-label">
+        <span>B / Masonry Cut</span>
+        <span>сильнее, темнее, дороже</span>
+      </div>
+      <div class="masonry-shell">
+        <div class="masonry-copy">
+          <div>
+            <div class="brand-line">
+              <span>Atelier Sweet Home</span>
+              <span>old houses / Georgia</span>
+            </div>
+            <h2>Сначала нужно понять, держит ли дом сам себя.</h2>
+            <p class="lead">Крыша, стены, дерево, полы и влага решают больше, чем площадь и красивые планы ремонта.</p>
+            <div class="masonry-actions">
+              <a class="button" href="#recommendation">Показать дом</a>
+              <a class="text-link" href="#recommendation">Смотреть реальные детали</a>
+            </div>
+          </div>
+          <p class="caption">подходит, если нужен более уверенный архитектурно-строительный тон</p>
+        </div>
+        <div class="masonry-photo-grid">
+          <figure class="masonry-photo-main">
+            <img class="photo" src="public/images/reconstruction/projects/stone-wall-window-detail.jpg" alt="Каменная стена старого дома с кирпичными участками">
+            <figcaption class="caption">стена / окно / кладка</figcaption>
+          </figure>
+          <div class="masonry-photo-row">
+            <figure>
+              <img class="photo" src="public/images/reconstruction/projects/interior-wall-wood-ceiling.jpg" alt="Старая внутренняя стена и деревянный потолок">
+              <figcaption class="caption">внутри</figcaption>
+            </figure>
+            <figure>
+              <img class="photo" src="public/images/reconstruction/projects/red-veranda-front.jpg" alt="Красная веранда старого дома">
+              <figcaption class="caption">веранда</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="direction material-ledger" aria-label="Direction C Material Ledger">
+      <div class="direction-label">
+        <span>C / Material Ledger</span>
+        <span>структурно, ясно, масштабируется</span>
+      </div>
+      <div class="ledger-shell">
+        <aside class="ledger-aside">
+          <div>
+            <div class="brand-line">
+              <span>Atelier Sweet Home</span>
+              <span>Тбилиси · Кахетия · Грузия</span>
+            </div>
+            <h2>Старый дом может стать теплым, светлым и удобным.</h2>
+            <p class="lead">Покажите дом по фотографиям. Мы скажем, что видно, чего не видно и есть ли смысл двигаться к разговору или осмотру.</p>
+            <div class="ledger-actions">
+              <a class="button" href="#recommendation">Прислать фото дома</a>
+              <a class="text-link" href="#recommendation">Как начинается работа</a>
+            </div>
+          </div>
+          <div class="ledger-facts">
+            <div class="ledger-fact"><b>Смотрим</b><span>крыша, стены, дерево, влага, полы, коммуникации</span></div>
+            <div class="ledger-fact"><b>Решаем</b><span>что сохранить, что усилить, что заменить</span></div>
+            <div class="ledger-fact"><b>Не обещаем</b><span>точную смету по фото и fake "под ключ"</span></div>
+          </div>
+        </aside>
+        <div class="ledger-main">
+          <figure class="hero-tall">
+            <img class="photo" src="public/images/reconstruction/hero/old-house-stone-facade.jpg" alt="Каменный фасад старого дома">
+            <figcaption class="caption">реальный старый дом / материал для решений</figcaption>
+          </figure>
+          <div class="ledger-stack">
+            <figure>
+              <img class="photo" src="public/images/reconstruction/projects/red-veranda-glass-view.jpg" alt="Веранда старого дома с остеклением">
+              <figcaption class="caption">веранда</figcaption>
+            </figure>
+            <figure>
+              <img class="photo" src="public/images/reconstruction/projects/interior-wall-wood-ceiling.jpg" alt="Старая стена и деревянный потолок">
+              <figcaption class="caption">дерево и стена</figcaption>
+            </figure>
+            <figure>
+              <img class="photo" src="public/images/reconstruction/projects/old-house-before-porch.jpg" alt="Старый дом до ремонта">
+              <figcaption class="caption">до решений</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="recommendation" id="recommendation">
+    <h2>Рекомендация</h2>
+    <p>Я бы брал C как основу: оно лучше масштабируется на крыши и летние кухни, не изображает большое портфолио и хорошо ложится на SEO. Но ему нужно добавить теплоту A: больше живых фото, меньше сухости. B оставить как запас, если захочется более дорогой и тяжелый архитектурный тон.</p>
+  </section>
+</body>
+</html>

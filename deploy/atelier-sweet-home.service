@@ -1,0 +1,18 @@
+[Unit]
+Description=Atelier Sweet Home website
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/www/atelier-sweet-home
+Environment=NODE_ENV=production
+Environment=PORT=3000
+EnvironmentFile=/var/www/atelier-sweet-home/.env.local
+ExecStart=/usr/bin/node /var/www/atelier-sweet-home/server.js
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
