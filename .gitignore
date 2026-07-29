@@ -7,3 +7,4 @@ node_modules/
 .next-dev-*.err.log
 
 VERCEL_IMPORT.env
+.vercel

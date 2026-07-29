@@ -366,7 +366,16 @@ h3 {
   width: 100%;
   height: 100%;
   display: block;
+  background: var(--dark-soft);
+}
+
+.summer-hero-image img {
   object-fit: cover;
+  object-position: center 52%;
+}
+
+.kitchen-gallery img {
+  object-fit: contain;
 }
 
 .summer-hero-image figcaption,
@@ -460,14 +469,15 @@ h3 {
 
 .roof-proof-strip figure {
   min-height: auto;
-  aspect-ratio: auto;
+  aspect-ratio: 3 / 4;
   background: var(--dark-soft);
 }
 
 .roof-proof-strip img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--dark-soft);
 }
 
 .roof-case-grid img {
@@ -521,7 +531,7 @@ h3 {
 
 .roof-case-grid figure {
   min-height: auto;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   background: var(--dark-soft);
 }
 
@@ -626,7 +636,7 @@ h3 {
 
 .home-direction {
   position: relative;
-  min-height: calc(100vh - 136px);
+  min-height: clamp(440px, calc(100vh - 136px), 760px);
   display: grid;
   align-content: end;
   gap: 14px;
@@ -657,6 +667,18 @@ h3 {
   height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center;
+  background: var(--dark);
+}
+
+.home-direction[href="/roof"] img {
+  object-fit: contain;
+  padding: 10px;
+  background: var(--dark-soft);
+}
+
+.home-direction[href="/summer-kitchen"] img {
+  object-position: center 52%;
 }
 
 .home-direction > span,
@@ -839,6 +861,7 @@ h3 {
 
 .real-photo-grid figure {
   min-height: 430px;
+  background: var(--dark-soft);
 }
 
 .real-photo-grid figure:first-child,

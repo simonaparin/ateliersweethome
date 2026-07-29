@@ -37,8 +37,11 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
 }
 
 export default function ReconstructionPage() {
-  const heroSideImages = content.realPhotos.images.slice(0, 2);
-  const materialImages = content.realPhotos.images.slice(0, 5);
+  const heroSideImages = [
+    content.realPhotos.images[2],
+    content.realPhotos.images[4]
+  ].filter(Boolean);
+  const materialImages = content.realPhotos.images.slice(3, 8);
 
   const professionalServiceSchema = {
     "@context": "https://schema.org",

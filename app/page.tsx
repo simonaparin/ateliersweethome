@@ -41,7 +41,7 @@ const directions = [
     text: "Делаем место на участке: навес, свет, рабочая зона, металл, плитка, мойка, хранение и стол для людей.",
     href: "/summer-kitchen",
     image: {
-      src: "/images/summer-kitchen/hero/summer-kitchen-hero-covered-work-zone.jpg",
+      src: "/images/summer-kitchen/projects/summer-kitchen-canopy-work-zone.jpg",
       alt: "Летняя кухня под большим металлическим навесом со столом и рабочей зоной"
     }
   },
@@ -50,8 +50,8 @@ const directions = [
     text: "Оцениваем стропильную систему, опоры, обрешетку, протечки и старое покрытие.",
     href: "/roof",
     image: {
-      src: "/images/roof/projects/roof-rafter-system-process.jpg",
-      alt: "Новая деревянная стропильная система на старом доме во время работ на крыше"
+      src: "/images/roof/projects/roof-after-new-profiled-sheet.jpg",
+      alt: "Готовая крыша из профлиста на старом доме"
     }
   }
 ];
