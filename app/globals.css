@@ -1414,6 +1414,7 @@ h3 {
   }
 
   .brand {
+    max-width: 100%;
     font-size: 31px;
   }
 
@@ -1456,7 +1457,21 @@ h3 {
   }
 
   .material-hero {
+    display: block;
     padding: 12px;
+  }
+
+  .material-hero .hero-copy,
+  .material-hero .hero-photo-ledger {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .material-hero h1,
+  .material-hero .hero-phrase,
+  .material-hero .hero-text {
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
 
   .roof-hero {

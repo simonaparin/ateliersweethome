@@ -97,7 +97,7 @@ export function InquiryForm({ content }: InquiryFormProps) {
         <input name="photos" type="file" accept="image/*" multiple />
       </label>
 
-      <p className="form-note">{content.localMode}</p>
+      {content.localMode ? <p className="form-note">{content.localMode}</p> : null}
 
       {state === "not-configured" ? (
         <p className="form-status" role="status">{content.notSent}</p>

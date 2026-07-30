@@ -247,16 +247,18 @@ export default function ReconstructionPage() {
             <p>{content.workshop.text}</p>
             <p>{content.workshop.extra}</p>
           </div>
-          <figure className="profile-image">
-            <Image
-              src={content.workshop.image.src}
-              alt={content.workshop.image.alt}
-              width={900}
-              height={700}
-              sizes="(max-width: 900px) 100vw, 36vw"
-            />
-            <figcaption>{content.workshop.image.caption}</figcaption>
-          </figure>
+          {content.workshop.image.src.includes("placeholder") ? null : (
+            <figure className="profile-image">
+              <Image
+                src={content.workshop.image.src}
+                alt={content.workshop.image.alt}
+                width={900}
+                height={700}
+                sizes="(max-width: 900px) 100vw, 36vw"
+              />
+              <figcaption>{content.workshop.image.caption}</figcaption>
+            </figure>
+          )}
         </section>
 
         <section className="section" id="work-start" aria-labelledby="start-title">
