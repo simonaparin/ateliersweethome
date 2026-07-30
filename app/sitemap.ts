@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7
-    }
+    },
+    ...["en", "ge"].flatMap((locale) => ["", "/reconstruction", "/roof", "/summer-kitchen", "/contacts"].map((path) => ({
+      url: `${siteConfig.siteUrl}/${locale}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: path === "/reconstruction" ? 0.9 : 0.7
+    })))
   ];
 }

@@ -24,8 +24,8 @@ const formContent: FormContent = {
     photos: "Фотографии — до 10 файлов"
   },
   budgetHint: "Помогает сразу понять подходящий масштаб решения.",
-  submit: "Подготовить обращение",
-  localMode: "Форма готовится под Telegram bot. Пока можно отправить письмо на AI7695-98@gmail.com.",
+  submit: "Отправить фотографии объекта",
+  localMode: "",
   success: "Спасибо. Сообщение получено. Мы посмотрим материалы и свяжемся с вами.",
   notSent: "Данные проверены, но пока никуда не отправлены: способ получения заявок еще не настроен."
 };
@@ -44,12 +44,6 @@ const contactRows = [
     text: "Удобно отправить фото объекта, геолокацию и короткое голосовое сообщение."
   },
   {
-    title: "Telegram",
-    value: contactConfig.telegram || "Ждем bot username",
-    href: contactConfig.telegram || undefined,
-    text: "После подключения бота заявки с сайта будут приходить в общий Telegram-чат."
-  },
-  {
     title: "Email",
     value: contactConfig.email || "Не указан",
     href: contactConfig.email ? `mailto:${contactConfig.email}` : undefined,
@@ -61,7 +55,8 @@ export const metadata: Metadata = {
   title: "Связаться с Atelier Sweet Home | Грузия",
   description: "Контакты Atelier Sweet Home: реконструкция старых домов, крыши, летние кухни и навесы в Грузии.",
   alternates: {
-    canonical: "/contacts"
+    canonical: "/contacts",
+    languages: { ru: "/contacts", en: "/en/contacts", ka: "/ge/contacts" }
   },
   openGraph: {
     title: "Связаться с Atelier Sweet Home",
@@ -69,7 +64,15 @@ export const metadata: Metadata = {
     url: "/contacts",
     siteName: siteConfig.name,
     locale: "ru_GE",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/images/reconstruction/hero/house-t-restored-clean.png",
+        width: 1280,
+        height: 960,
+        alt: "Восстановленный каменный дом Atelier Sweet Home"
+      }
+    ]
   }
 };
 

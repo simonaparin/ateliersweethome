@@ -9,7 +9,8 @@ export const metadata: Metadata = {
   title: "Atelier Sweet Home | Реконструкция, крыши и летние кухни в Грузии",
   description: "Небольшая мастерская для старых домов, крыш, летних кухонь и навесов в Тбилиси, Кахетии и других регионах Грузии.",
   alternates: {
-    canonical: "/"
+    canonical: "/",
+    languages: { ru: "/", en: "/en", ka: "/ge" }
   },
   openGraph: {
     title: "Atelier Sweet Home",
@@ -17,7 +18,15 @@ export const metadata: Metadata = {
     url: "/",
     siteName: siteConfig.name,
     locale: "ru_GE",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/images/reconstruction/hero/house-t-restored-clean.png",
+        width: 1280,
+        height: 960,
+        alt: "Восстановленный каменный дом Atelier Sweet Home"
+      }
+    ]
   }
 };
 
@@ -41,8 +50,8 @@ const directions = [
     text: "Делаем место на участке: навес, свет, рабочая зона, металл, плитка, мойка, хранение и стол для людей.",
     href: "/summer-kitchen",
     image: {
-      src: "/images/summer-kitchen/projects/summer-kitchen-canopy-work-zone.jpg",
-      alt: "Летняя кухня под большим металлическим навесом со столом и рабочей зоной"
+      src: "/images/summer-kitchen/projects/summer-kitchen-yard-wide-view.jpg",
+      alt: "Летняя кухня с большим навесом, столом и рабочей зоной на участке"
     }
   },
   {

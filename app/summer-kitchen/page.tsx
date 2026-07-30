@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   title: content.seo.title,
   description: content.seo.description,
   alternates: {
-    canonical: "/summer-kitchen"
+    canonical: "/summer-kitchen",
+    languages: { ru: "/summer-kitchen", en: "/en/summer-kitchen", ka: "/ge/summer-kitchen" }
   },
   openGraph: {
     title: content.seo.title,
@@ -223,7 +224,7 @@ export default function SummerKitchenPage() {
 
         <RelatedDirections
           title="Если это часть большего плана"
-          text="Летняя кухня может быть отдельным объектом или частью будущей реконструкции дома и участка. Лучше выбрать первый разумный шаг и не раздувать задачу раньше времени."
+          text="Летняя кухня может быть отдельным объектом или частью будущей реконструкции дома и участка. Сначала определяем первый разумный шаг, затем собираем общий план."
           items={relatedDirections.summerKitchen}
         />
 

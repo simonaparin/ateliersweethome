@@ -3,9 +3,11 @@ import Image from "next/image";
 import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
+import { ProjectCases } from "@/components/ProjectCases";
 import { RelatedDirections } from "@/components/RelatedDirections";
 import { contactConfig } from "@/data/contacts";
 import { relatedDirections } from "@/data/directions";
+import { reconstructionCases } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 import { getReconstructionContent } from "@/lib/content";
 
@@ -15,7 +17,8 @@ export const metadata: Metadata = {
   title: content.seo.title,
   description: content.seo.description,
   alternates: {
-    canonical: "/reconstruction"
+    canonical: "/reconstruction",
+    languages: { ru: "/reconstruction", en: "/en/reconstruction", ka: "/ge/reconstruction" }
   },
   openGraph: {
     title: content.seo.ogTitle,
@@ -23,7 +26,15 @@ export const metadata: Metadata = {
     url: "/reconstruction",
     siteName: siteConfig.name,
     locale: "ru_GE",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: content.hero.image.src,
+        width: 1280,
+        height: 960,
+        alt: content.hero.image.alt
+      }
+    ]
   }
 };
 
@@ -223,42 +234,19 @@ export default function ReconstructionPage() {
           </ul>
         </section>
 
-        <section className="section object-context-section" aria-labelledby="object-context-title">
-          <div className="section-heading">
-            <p className="eyebrow">Реальность</p>
-            <h2 id="object-context-title">{content.objectContext.title}</h2>
-            <p>{content.objectContext.text}</p>
-          </div>
-          <div className="object-context-grid">
-            {content.objectContext.items.map((item) => (
-              <article key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
-          <p className="note">{content.objectContext.note}</p>
-        </section>
+        <ProjectCases
+          title={content.cases.title}
+          emptyText={content.cases.emptyText}
+          cases={reconstructionCases}
+        />
 
-        <section className="section workshop-section" aria-labelledby="workshop-title">
+        <section className="section workshop-section workshop-section--text-only" aria-labelledby="workshop-title">
           <div className="workshop-copy">
             <p className="eyebrow">Формат работы</p>
             <h2 id="workshop-title">{content.workshop.title}</h2>
             <p>{content.workshop.text}</p>
             <p>{content.workshop.extra}</p>
           </div>
-          {content.workshop.image.src.includes("placeholder") ? null : (
-            <figure className="profile-image">
-              <Image
-                src={content.workshop.image.src}
-                alt={content.workshop.image.alt}
-                width={900}
-                height={700}
-                sizes="(max-width: 900px) 100vw, 36vw"
-              />
-              <figcaption>{content.workshop.image.caption}</figcaption>
-            </figure>
-          )}
         </section>
 
         <section className="section" id="work-start" aria-labelledby="start-title">

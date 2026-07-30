@@ -4,6 +4,10 @@
 
 No fabrication. If a fact is not known, mark it as unknown or ask.
 
+Work through the active audit/checklist until its current block is complete.
+Do not send a progress message that looks like a final result. Report only after
+the completed block: files changed, checks run, what remains, and the next step.
+
 The current brand name is:
 
 ```text
@@ -68,11 +72,14 @@ Avoid:
 
 - Site direction: old house reconstruction in Georgia.
 - Primary client language: Russian.
-- Secondary SEO/sales language: English.
-- Georgian version should be checked by a native speaker before publishing.
-- Public phone should not be shown yet.
+- English and Georgian are required site languages. Their text is translated and
+  adapted from the approved Russian source; Georgian needs a native-speaker pass
+  before public launch.
+- Public phone: `+995555128231`.
+- WhatsApp: `https://wa.me/995555128231`.
 - Email: `AI7695-98@gmail.com`.
-- Telegram bot planned for applications.
+- Telegram bot receives form applications internally; do not show a public
+  Telegram link unless an actual client-facing username/link is provided.
+- Current domain: `ateliersweethome.ge`.
 - Real reconstruction photos exist in local project/public folders.
-- Summer kitchen photos exist but are for a future `/summer-kitchen` page.
-
+- Summer kitchen photos exist and are used on `/summer-kitchen`.

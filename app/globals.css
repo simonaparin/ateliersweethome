@@ -104,7 +104,8 @@ img {
   border: 1px solid var(--line);
 }
 
-.language-switcher a {
+.language-switcher a,
+.language-switcher span {
   min-width: 42px;
   min-height: 34px;
   display: inline-flex;
@@ -116,7 +117,8 @@ img {
   font-weight: 700;
 }
 
-.language-switcher a:last-child {
+.language-switcher a:last-child,
+.language-switcher span:last-child {
   border-right: 0;
 }
 
@@ -125,8 +127,9 @@ img {
   color: var(--paper);
 }
 
-.language-switcher a[aria-disabled="true"] {
+.language-switcher span[aria-disabled="true"] {
   opacity: 0.48;
+  cursor: default;
 }
 
 .write-link,
@@ -302,6 +305,11 @@ h3 {
   object-fit: cover;
 }
 
+.case-images img {
+  object-fit: contain;
+  background: var(--stone-dark);
+}
+
 .hero-main-photo {
   min-height: calc(100vh - 118px);
 }
@@ -470,14 +478,14 @@ h3 {
 .roof-proof-strip figure {
   min-height: auto;
   aspect-ratio: 3 / 4;
-  background: var(--dark-soft);
+  background: var(--stone-dark);
 }
 
 .roof-proof-strip img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  background: var(--dark-soft);
+  background: var(--stone-dark);
 }
 
 .roof-case-grid img {
@@ -678,7 +686,8 @@ h3 {
 }
 
 .home-direction[href="/summer-kitchen"] img {
-  object-position: center 52%;
+  object-fit: contain;
+  background: var(--dark-soft);
 }
 
 .home-direction > span,
@@ -1006,6 +1015,10 @@ h3 {
 
 .workshop-section {
   background: var(--plaster);
+}
+
+.workshop-section--text-only {
+  grid-template-columns: minmax(0, 820px);
 }
 
 .profile-image {
@@ -1428,7 +1441,8 @@ h3 {
     justify-content: space-between;
   }
 
-  .language-switcher a {
+  .language-switcher a,
+  .language-switcher span {
     min-width: 38px;
   }
 

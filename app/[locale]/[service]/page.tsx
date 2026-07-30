@@ -1,0 +1,97 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Metadata } from "next";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { ContactLinks } from "@/components/ContactLinks";
+import { Header } from "@/components/Header";
+import { InquiryForm } from "@/components/InquiryForm";
+import { contactConfig } from "@/data/contacts";
+import enReconstruction from "@/content/en/reconstruction.json";
+import geReconstruction from "@/content/ka/reconstruction.json";
+import enRoof from "@/content/en/roof.json";
+import geRoof from "@/content/ge/roof.json";
+import enKitchen from "@/content/en/summer-kitchen.json";
+import geKitchen from "@/content/ge/summer-kitchen.json";
+import { full as enFull } from "@/content/en/full";
+import { full as geFull } from "@/content/ge/full";
+import ruReconstruction from "@/content/ru/reconstruction.json";
+import ruRoof from "@/content/ru/roof.draft.json";
+import ruKitchen from "@/content/ru/summer-kitchen.draft.json";
+
+const pages = { en: { reconstruction: enReconstruction, roof: enRoof, "summer-kitchen": enKitchen }, ge: { reconstruction: geReconstruction, roof: geRoof, "summer-kitchen": geKitchen } } as const;
+type Locale = keyof typeof pages;
+type Service = keyof typeof pages.en;
+
+const ui = {
+  en: {
+    inspection: "Inspection", details: "Details", modernLife: "Life inside", situations: "Situations", decisions: "Decision logic", scope: "Scope of work", realCase: "Real project", workshop: "Working format", start: "Getting started", faq: "Common questions", related: "Related directions", contact: "Contact", before: ["before", "process", "after"],
+    roofCheck: "We assess the roof before proposing work", kitchenCheck: "We assess the site before proposing a solution", roofWorkshop: "A roof can be a separate task or the first step of a larger reconstruction.", kitchenWorkshop: "The site, base, utilities and daily use are considered together.", startSteps: ["Send photos and the location.", "Briefly describe the task.", "We review the material and ask clarifying questions.", "If the task is a fit, we arrange a call or an inspection."],
+    relatedText: "If the task is wider, we can look at the house, roof and site together.", fields: ["Name", "Contact", "Property location", "What would you like to do?", "Preferred start date, optional", "Budget range, optional", "Photos, up to 10 files"], success: "Thank you. Your message has been received.", submitting: "Sending...", footer: "Old houses, roofs, outdoor kitchens and canopies in Georgia."
+  },
+  ge: {
+    inspection: "დათვალიერება", details: "დეტალები", modernLife: "ცხოვრება სახლში", situations: "სიტუაციები", decisions: "გადაწყვეტის ლოგიკა", scope: "სამუშაოს შემადგენლობა", realCase: "რეალური ობიექტი", workshop: "სამუშაო ფორმატი", start: "დაწყება", faq: "ხშირი კითხვები", related: "დაკავშირებული მიმართულებები", contact: "კონტაქტი", before: ["მანამდე", "პროცესი", "შემდეგ"],
+    roofCheck: "სამუშაოს შეთავაზებამდე ვაფასებთ სახურავს", kitchenCheck: "გადაწყვეტის შეთავაზებამდე ვაფასებთ ადგილს", roofWorkshop: "სახურავი შეიძლება იყოს ცალკე ამოცანა ან დიდი რეკონსტრუქციის პირველი ეტაპი.", kitchenWorkshop: "ადგილი, საფუძველი, კომუნიკაციები და ყოველდღიური გამოყენება ერთად განიხილება.", startSteps: ["გამოგვიგზავნეთ ფოტოები და ადგილმდებარეობა.", "მოკლედ აღწერეთ ამოცანა.", "ვათვალიერებთ მასალას და ვსვამთ დამაზუსტებელ კითხვებს.", "თუ ამოცანა შესაფერისია, ვთანხმდებით ზარზე ან დათვალიერებაზე."],
+    relatedText: "თუ ამოცანა უფრო ფართოა, სახლს, სახურავსა და ეზოს ერთად განვიხილავთ.", fields: ["სახელი", "კონტაქტი", "ობიექტის ადგილმდებარეობა", "რის გაკეთება გსურთ?", "სასურველი დაწყების თარიღი, სურვილისამებრ", "ბიუჯეტის დიაპაზონი, სურვილისამებრ", "ფოტოები, მაქსიმუმ 10 ფაილი"], success: "გმადლობთ. შეტყობინება მიღებულია.", submitting: "იგზავნება...", footer: "ძველი სახლები, სახურავები, საზაფხულო სამზარეულოები და ფარდულები საქართველოში."
+  }
+} as const;
+
+export function generateStaticParams() { return ["en", "ge"].flatMap((locale) => ["reconstruction", "roof", "summer-kitchen"].map((service) => ({ locale, service }))); }
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; service: Service }> }): Promise<Metadata> {
+  const { locale, service } = await params;
+  const page: any = pages[locale]?.[service];
+  if (!page) return {};
+  const title = page.seo?.title ?? page.title;
+  const description = page.seo?.description ?? page.text;
+  return { title, description, alternates: { canonical: `/${locale}/${service}`, languages: { ru: `/${service}`, en: `/en/${service}`, ka: `/ge/${service}` } }, openGraph: { title, description, url: `/${locale}/${service}`, locale: locale === "en" ? "en_GE" : "ka_GE", type: "website" } };
+}
+
+function Section({ eyebrow, title, text, children, dark = false }: { eyebrow: string; title: string; text?: string; children?: React.ReactNode; dark?: boolean }) {
+  return <section className={`section ${dark ? "split-section dark-check-section" : ""}`}><div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2>{text ? <p>{text}</p> : null}</div>{children}</section>;
+}
+
+export default async function LocalizedService({ params }: { params: Promise<{ locale: Locale; service: Service }> }) {
+  const { locale, service } = await params;
+  const page: any = pages[locale]?.[service];
+  if (!page) notFound();
+  const t = ui[locale];
+  const complete: any = (locale === "en" ? enFull : geFull)[service];
+  const source: any = service === "reconstruction" ? ruReconstruction : service === "roof" ? ruRoof : ruKitchen;
+  const hero: any = page.hero ?? { title: page.title, mainPhrase: page.phrase, text: page.text, primaryCta: page.cta };
+  const faqSource = page.faq ?? complete.faq;
+  const faq = Array.isArray(faqSource) ? faqSource.map(([question, answer]: [string, string]) => ({ question, answer })) : faqSource?.items ?? [];
+  const form = page.form ?? { title: page.formTitle, text: page.formText, submit: page.cta };
+  const fields = form.fields ?? t.fields;
+  const formContent: any = { title: form.title, text: form.text, fields: { name: fields[0], contact: fields[1], location: fields[2], task: fields[3], start: fields[4], budget: fields[5], photos: fields[6] }, budgetHint: "", submit: form.submit, localMode: "", success: form.success ?? t.success, notSent: "" };
+  const scope = Array.isArray(page.scope) ? page.scope : page.scope?.items ?? [];
+  const situations = Array.isArray(page.situations) ? page.situations : page.situations?.items ?? complete.situations ?? [];
+  const check = page.inspection?.items ?? page.checkBeforeWork ?? page.siteCheck?.items ?? complete.siteCheck?.items ?? [];
+  const checkTitle = page.inspection?.title ?? page.checkTitle ?? page.siteCheck?.title ?? complete.siteCheck?.title ?? (service === "roof" ? t.roofCheck : t.kitchenCheck);
+  const checkText = page.inspection?.text ?? page.checkText ?? page.siteCheck?.text ?? complete.checkText ?? complete.siteCheck?.text;
+  const start = page.start?.steps ?? complete.start?.steps ?? t.startSteps;
+  const decisions = page.decisions ?? complete.decisions;
+  const workshop = page.workshop ?? complete.workshop;
+  const caseTitle = page.case?.title ?? page.caseTitle ?? page.realObject?.title ?? page.neededRealCase?.publicDraft;
+  const caseText = page.case?.text ?? page.caseText ?? page.realObject?.text ?? page.neededRealCase?.publicDraft;
+  const images = service === "reconstruction" ? source.realPhotos.images : service === "roof" ? source.currentPhotos.images : source.realObject.images;
+  const related = locale === "en"
+    ? service === "reconstruction" ? [["Roofs", "roof"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : service === "roof" ? [["Old house reconstruction", "reconstruction"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : [["Old house reconstruction", "reconstruction"], ["Roofs", "roof"]]
+    : service === "reconstruction" ? [["სახურავები", "roof"], ["საზაფხულო სამზარეულოები და ფარდულები", "summer-kitchen"]] : service === "roof" ? [["ძველი სახლის რეკონსტრუქცია", "reconstruction"], ["საზაფხულო სამზარეულოები და ფარდულები", "summer-kitchen"]] : [["ძველი სახლის რეკონსტრუქცია", "reconstruction"], ["სახურავები", "roof"]];
+
+  return <><Header locale={locale} activePath={`/${service}`} contacts={contactConfig} content={{ brand: "Atelier Sweet Home", writeLabel: locale === "en" ? "Write to us" : "მოგვწერეთ" }} />
+    <main className="localized-page">
+      <section className="hero-section material-hero"><div className="hero-copy"><p className="eyebrow">Tbilisi · Kakheti · Georgia</p><h1>{hero.title}</h1><p className="hero-phrase">{hero.mainPhrase}</p><p className="hero-text">{hero.text}</p><div className="hero-actions"><a className="primary-button" href="#contact-form">{hero.primaryCta}</a><a className="secondary-link" href="#work-start">{hero.secondaryCta ?? t.start}</a></div></div><figure className="hero-image hero-main-photo"><Image src={(source.hero?.image ?? images[0]).src} alt={hero.title} width={1320} height={980} priority sizes="(max-width: 900px) 100vw, 48vw" /></figure></section>
+      <Section eyebrow={t.inspection} title={checkTitle} text={checkText} dark><ul className="check-list">{check.map((item: string) => <li key={item}>{item}</li>)}</ul>{page.inspection?.note ? <p className="note">{page.inspection.note}</p> : null}</Section>
+      <Section eyebrow={t.details} title={page.details?.title ?? page.realPhotos?.title ?? caseTitle} text={page.details?.text ?? page.realPhotos?.text ?? caseText}><div className="real-photo-grid">{images.slice(service === "reconstruction" ? 3 : 0, service === "reconstruction" ? 8 : 3).map((image: any) => <figure key={image.src}><Image src={image.src} alt={`${hero.title}: ${t.details}`} width={900} height={680} sizes="(max-width: 760px) 100vw, 33vw" /></figure>)}</div></Section>
+      {page.modernLife ? <Section eyebrow={t.modernLife} title={page.modernLife.title} text={page.modernLife.text}><ul className="scope-list">{page.modernLife.items.map((item: string) => <li key={item}>{item}</li>)}</ul></Section> : null}
+      <Section eyebrow={t.situations} title={page.situations?.title ?? (locale === "en" ? "When to contact us" : "როდის მოგვმართოთ")}><div className="situation-grid">{situations.map((item: any) => <article className="situation-item" key={typeof item === "string" ? item : item.title}><h3>{typeof item === "string" ? item : item.title}</h3>{typeof item === "object" ? <p>{item.text}</p> : null}</article>)}</div></Section>
+      {service === "reconstruction" ? <Section eyebrow={t.decisions} title={decisions.title}><ul className="scope-list">{decisions.items.map((item: string) => <li key={item}>{item}</li>)}</ul><p className="note">{decisions.note}</p></Section> : null}
+      <Section eyebrow={t.scope} title={page.scope?.title ?? page.scopeTitle} text={page.scope?.text}><ul className="scope-list">{scope.map((item: string) => <li key={item}>{item}</li>)}</ul></Section>
+      <Section eyebrow={t.realCase} title={caseTitle} text={caseText} />
+      <Section eyebrow={t.workshop} title={workshop?.title ?? (locale === "en" ? "The way we work" : "როგორ ვმუშაობთ")} text={workshop?.text ?? (service === "roof" ? t.roofWorkshop : service === "summer-kitchen" ? t.kitchenWorkshop : "")}><p>{workshop?.extra}</p></Section>
+      <Section eyebrow={t.start} title={page.start?.title ?? complete.start?.title ?? (locale === "en" ? "The first step is to show us the property" : "პირველი ნაბიჯია ობიექტის ჩვენება")}><ol className="steps-list" id="work-start">{start.map((item: string) => <li key={item}>{item}</li>)}</ol></Section>
+      <Section eyebrow="FAQ" title={page.faq?.title ?? t.faq}>{faq.length ? <div className="faq-list">{faq.map((item: any) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div> : null}</Section>
+      <Section eyebrow={t.related} title={t.related} text={t.relatedText}><div className="direction-list">{related.map(([label, href]) => <a className="direction-row" href={`/${locale}/${href}`} key={href}><span>{label}</span></a>)}</div></Section>
+      <section className="section contact-section"><div className="contact-copy"><p className="eyebrow">{t.contact}</p><h2>{form.title}</h2><p>{form.text}</p><ContactLinks contacts={contactConfig} /></div><InquiryForm content={formContent} /></section>
+    </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{t.footer}</span></div><div className="footer-meta"><span>RU / EN / GE</span><span>© Atelier Sweet Home</span></div></footer></>;
+}

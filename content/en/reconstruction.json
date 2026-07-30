@@ -1,8 +1,75 @@
 {
   "locale": "en",
-  "placeholder": true,
   "seo": {
     "title": "Old House Reconstruction in Georgia | Atelier Sweet Home",
-    "description": "English content placeholder. Full English copy should be reviewed before launch."
+    "description": "Reconstruction and practical restoration of old private homes in Georgia: structures, roof, utilities, warmth, water and comfortable living.",
+    "ogTitle": "Old House Reconstruction | Atelier Sweet Home",
+    "ogDescription": "An old house can become warm, bright and comfortable while keeping its character."
+  },
+  "hero": {
+    "title": "Old house reconstruction in Georgia",
+    "mainPhrase": "An old house can become warm, bright and comfortable while keeping its character.",
+    "text": "We restore and renovate old private houses for modern living: strengthen structures, replace unsafe elements, and install reliable heating, water, electricity and bathrooms. We work with attention to materials, details and the overall character of the house.",
+    "primaryCta": "Send house photos",
+    "secondaryCta": "How the work starts"
+  },
+  "inspection": {
+    "title": "First, understand the condition of the house",
+    "text": "We assess foundations, walls, roof, floors, timber, moisture and existing utilities. After an inspection, it becomes clear what can be kept, where strengthening is needed and where replacement is the safe choice.",
+    "items": ["foundation and cracks", "load-bearing walls", "timber beams and floors", "roof structure and covering", "moisture and rot", "floors", "existing layout", "utilities", "extension or replanning potential"],
+    "note": "This creates a realistic reconstruction plan and a clear sequence of work."
+  },
+  "details": {
+    "title": "Keeping the strong details of an old house",
+    "text": "A house often gets its character from stonework, brickwork, old doors, windows, shutters, timber beams, verandas and room proportions. Where an element can be retained and put back into working condition, we restore it or integrate it carefully into the project."
+  },
+  "modernLife": {
+    "title": "Adding modern living",
+    "text": "An old house can have proper heating, water supply, electricity, bathrooms, a kitchen, insulation and a practical layout. The interior can remain calm and traditional or become more contemporary, depending on the owner and the house.",
+    "items": ["heating for year-round living", "water, drainage and bathrooms", "new electrics and considered lighting", "insulation where it is needed", "kitchen and practical layout", "verandas, terraces and small extensions"]
+  },
+  "situations": {
+    "title": "When to show us the house",
+    "items": ["You bought a house and do not know where to start.", "You are looking at a house before buying it.", "The roof, walls, beams or floors raise questions.", "The house is beautiful but inconvenient to live in.", "You want to keep stone, timber, doors, windows or the original layout."]
+  },
+  "decisions": {
+    "title": "What to keep, strengthen or replace",
+    "items": ["Keep elements that are valuable, sound and safe to use.", "Strengthen and repair elements that can be made reliable again.", "Replace elements whose condition no longer supports safety and durability."],
+    "note": "The final decision follows an inspection and, when necessary, opening selected areas."
+  },
+  "scope": {
+    "title": "What reconstruction can include",
+    "text": "The scope depends on the house, the owner’s task and the intended result.",
+    "items": ["removal of damaged or unnecessary parts", "repair and strengthening of timber structures", "floor replacement", "partial or full roof reconstruction", "stone and brick wall repair", "layout changes", "new openings", "insulation", "new floors", "water and drainage", "electricity", "heating", "windows, doors and stairs", "verandas, terraces and small extensions", "joinery and interior details"]
+  },
+  "case": {
+    "title": "House T: restoration for year-round living",
+    "text": "An old private house was bought in damaged condition and restored for comfortable year-round living. The work included a veranda, heating, water supply, electrical work, two bathrooms and interior finishing. The workshop partner took part in the restoration personally and lives in the house."
+  },
+  "workshop": {
+    "title": "A small workshop with one responsible contact",
+    "text": "The project is led by a master with joinery, construction and restoration experience. An engineer joins complex structural decisions. Welders, concrete workers and other specialists are brought in for the specific scope.",
+    "extra": "The owner has one clear contact while the right team is assembled for the house."
+  },
+  "start": {
+    "title": "The first step is to show the house",
+    "steps": ["Send photos and the house location.", "Briefly describe what you want to change.", "We review the material and ask clarifying questions.", "If the task is a fit, we arrange a call or an inspection."]
+  },
+  "faq": {
+    "title": "Common questions",
+    "items": [
+      ["Can the condition be understood from photos alone?", "Photos help us understand the task and notice some problems. The exact scope is determined after inspection, and sometimes after opening parts of the structure."],
+      ["Can old beams, walls and doors be kept?", "Yes, when their condition allows safe continued use. Each element is assessed separately."],
+      ["Can reconstruction be carried out in stages?", "Often yes. The sequence must account for the roof, walls, foundation and utilities."],
+      ["How much does reconstruction cost?", "An exact cost cannot be calculated from floor area alone. It depends on structures, demolition, materials, utilities, access and finishes."],
+      ["Where do you work?", "Our main areas are Tbilisi and Kakheti. Projects elsewhere in Georgia are possible when the task and scale are a good fit."]
+    ]
+  },
+  "form": {
+    "title": "Show us your house",
+    "text": "Send a few photos, the location and a short description of what you want to change. We will review the material and get in touch.",
+    "fields": ["Name", "Contact for a reply", "House location", "What would you like to do?", "Preferred start date, optional", "Budget range, optional", "House photos, up to 10 files"],
+    "submit": "Send house photos",
+    "success": "Thank you. Your message has been received. We will review the material and contact you."
   }
 }

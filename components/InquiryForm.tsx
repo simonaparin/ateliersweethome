@@ -55,7 +55,7 @@ export function InquiryForm({ content }: InquiryFormProps) {
 
       setState("sent");
     } catch {
-      setError("Отправка пока не настроена. Данные не были отправлены.");
+      setError("Не удалось отправить заявку. Проверьте соединение и попробуйте еще раз.");
       setState("error");
     }
   }

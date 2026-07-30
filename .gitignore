@@ -8,3 +8,4 @@ node_modules/
 
 VERCEL_IMPORT.env
 .vercel
+.gstack/

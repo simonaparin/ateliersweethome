@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contactConfig } from "@/data/contacts";
 
 export function FloatingContact() {
@@ -10,9 +11,9 @@ export function FloatingContact() {
         : "Форма";
 
   return (
-    <a className="floating-contact" href="/contacts" aria-label="Связаться с Atelier Sweet Home">
+    <Link className="floating-contact" href="/contacts" aria-label="Связаться с Atelier Sweet Home">
       <span>Связаться</span>
       <small>{channel}</small>
-    </a>
+    </Link>
   );
 }

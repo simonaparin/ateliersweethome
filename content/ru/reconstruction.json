@@ -50,11 +50,6 @@
     "text": "Характер дома часто держится на конкретных вещах: каменной кладке, кирпичных участках, старых дверях, окнах, ставнях, деревянных балках, веранде, пропорциях комнат. Если элемент можно сохранить и привести в рабочее состояние, мы стараемся его отреставрировать, восстановить или аккуратно встроить в новый проект.",
     "images": [
       {
-        "src": "/images/reconstruction/projects/house-t/house-t-stone-facade-day.jpg",
-        "alt": "Каменная стена восстановленного старого дома днем",
-        "caption": "Камень и новая веранда"
-      },
-      {
         "src": "/images/reconstruction/projects/house-t/house-t-night-stone-facade.jpg",
         "alt": "Восстановленный старый дом с подсветкой каменной стены",
         "caption": "Старая фактура в вечернем свете"
@@ -68,21 +63,6 @@
         "src": "/images/reconstruction/projects/house-t/house-t-veranda-glass-view.jpg",
         "alt": "Веранда старого дома со стеклянными дверями и видом на двор",
         "caption": "Веранда как новая жилая часть дома"
-      },
-      {
-        "src": "/images/reconstruction/projects/house-t/house-t-kitchen-interior.jpg",
-        "alt": "Кухня внутри восстановленного старого дома",
-        "caption": "Современная кухня внутри старого дома"
-      },
-      {
-        "src": "/images/reconstruction/projects/house-t/house-t-room-restored-interior.jpg",
-        "alt": "Комната восстановленного дома с деревянным потолком и светлыми стенами",
-        "caption": "Светлая комната после восстановления"
-      },
-      {
-        "src": "/images/reconstruction/projects/house-t/house-t-night-veranda.jpg",
-        "alt": "Восстановленный дом с верандой в вечернем освещении",
-        "caption": "Дом для круглогодичного проживания"
       },
       {
         "src": "/images/reconstruction/projects/house-t/house-t-veranda-red-wall.jpg",

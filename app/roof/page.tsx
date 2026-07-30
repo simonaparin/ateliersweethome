@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   title: content.seo.title,
   description: content.seo.description,
   alternates: {
-    canonical: "/roof"
+    canonical: "/roof",
+    languages: { ru: "/roof", en: "/en/roof", ka: "/ge/roof" }
   },
   openGraph: {
     title: content.seo.title,
@@ -113,7 +114,7 @@ export default function RoofPage() {
                   alt={image.alt}
                   width={960}
                   height={1280}
-                  priority={index === 2}
+                  priority
                   sizes="(max-width: 900px) 100vw, 33vw"
                 />
                 {image.caption ? <figcaption>{image.caption}</figcaption> : null}
@@ -125,7 +126,7 @@ export default function RoofPage() {
         <section className="section roof-case-section" aria-labelledby="roof-case-title">
           <div className="section-heading">
             <p className="eyebrow">Реальная работа</p>
-            <h2 id="roof-case-title">Крыша, которая закрыла старый дом от воды</h2>
+            <h2 id="roof-case-title">Замена крыши на старом доме</h2>
             <p>{content.neededRealCase.publicDraft}</p>
           </div>
           <div className="roof-case-grid">
@@ -190,25 +191,6 @@ export default function RoofPage() {
             ))}
           </ul>
         </section>
-
-        {content.videoSources ? (
-          <section className="section muted-section" aria-labelledby="video-title">
-            <div className="section-heading">
-              <p className="eyebrow">Видео процесса</p>
-              <h2 id="video-title">Видео процесса лучше готовить отдельно</h2>
-              <p>{content.videoSources.note}</p>
-            </div>
-            <div className="video-source-list">
-              {content.videoSources.files.slice(0, 4).map((file) => (
-                <article key={file.sourcePath}>
-                  <span>{file.duration}</span>
-                  <h3>{file.title}</h3>
-                  <p>{file.use}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        ) : null}
 
         <section className="section faq-section" aria-labelledby="faq-title">
           <div className="section-heading compact">

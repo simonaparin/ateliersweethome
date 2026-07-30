@@ -6,22 +6,24 @@ type HeaderProps = {
   content: HeaderContent;
   contacts: ContactConfig;
   activePath?: string;
+  locale?: "ru" | "en" | "ge";
 };
 
-export function Header({ content, contacts, activePath = "/reconstruction" }: HeaderProps) {
+export function Header({ content, contacts, activePath = "/reconstruction", locale = "ru" }: HeaderProps) {
   const hasContact = Boolean(contacts.whatsapp || contacts.telegram || contacts.email);
+  const localizedPath = (target: "ru" | "en" | "ge") => target === "ru" ? activePath : `/${target}${activePath}`;
 
   return (
     <header className="site-header">
-      <Link className="brand" href="/" aria-label="Atelier Sweet Home">
+      <Link className="brand" href={locale === "ru" ? "/" : `/${locale}`} aria-label="Atelier Sweet Home">
         {content.brand}
       </Link>
 
       <div className="header-actions" aria-label="Language and contact controls">
         <nav className="language-switcher" aria-label="Language">
-          <a aria-current="page" href={`${activePath}?lang=ru`}>RU</a>
-          <a aria-disabled="true" href={`${activePath}?lang=en`}>EN</a>
-          <a aria-disabled="true" href={`${activePath}?lang=ka`}>GE</a>
+          <a aria-current={locale === "ru" ? "page" : undefined} href={localizedPath("ru")}>RU</a>
+          <a aria-current={locale === "en" ? "page" : undefined} href={localizedPath("en")}>EN</a>
+          <a aria-current={locale === "ge" ? "page" : undefined} href={localizedPath("ge")}>GE</a>
         </nav>
         {hasContact ? (
           <a className="write-link" href="#contact-form">{content.writeLabel}</a>
