@@ -12,6 +12,7 @@ type HeaderProps = {
 export function Header({ content, contacts, activePath = "/reconstruction", locale = "ru" }: HeaderProps) {
   const hasContact = Boolean(contacts.whatsapp || contacts.telegram || contacts.email);
   const localizedPath = (target: "ru" | "en" | "ge") => target === "ru" ? activePath : `/${target}${activePath}`;
+  const contactsPath = locale === "ru" ? "/contacts" : `/${locale}/contacts`;
 
   return (
     <header className="site-header">
@@ -26,9 +27,9 @@ export function Header({ content, contacts, activePath = "/reconstruction", loca
           <a aria-current={locale === "ge" ? "page" : undefined} href={localizedPath("ge")}>GE</a>
         </nav>
         {hasContact ? (
-          <a className="write-link" href="#contact-form">{content.writeLabel}</a>
+          <a className="write-link" href={contactsPath}>{content.writeLabel}</a>
         ) : (
-          <a className="write-link" href="#contact-form">{content.writeLabel}</a>
+          <a className="write-link" href={contactsPath}>{content.writeLabel}</a>
         )}
       </div>
     </header>

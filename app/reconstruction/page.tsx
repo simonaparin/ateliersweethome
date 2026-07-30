@@ -4,9 +4,13 @@ import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { ProjectCases } from "@/components/ProjectCases";
+import { ProfessionalApproach } from "@/components/ProfessionalApproach";
+import { RemoteCollaboration } from "@/components/RemoteCollaboration";
 import { RelatedDirections } from "@/components/RelatedDirections";
 import { contactConfig } from "@/data/contacts";
 import { relatedDirections } from "@/data/directions";
+import { professionalApproach } from "@/data/professionalApproach";
+import { remoteCollaboration } from "@/data/remoteCollaboration";
 import { reconstructionCases } from "@/data/projects";
 import { siteConfig } from "@/data/site";
 import { getReconstructionContent } from "@/lib/content";
@@ -233,6 +237,10 @@ export default function ReconstructionPage() {
             ))}
           </ul>
         </section>
+
+        <ProfessionalApproach content={professionalApproach.ru.reconstruction} />
+
+        <RemoteCollaboration content={remoteCollaboration.ru.reconstruction} />
 
         <ProjectCases
           title={content.cases.title}

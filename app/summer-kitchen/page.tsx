@@ -4,8 +4,12 @@ import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { RelatedDirections } from "@/components/RelatedDirections";
+import { ProfessionalApproach } from "@/components/ProfessionalApproach";
+import { RemoteKitchenCase } from "@/components/RemoteCollaboration";
 import { contactConfig } from "@/data/contacts";
 import { relatedDirections } from "@/data/directions";
+import { professionalApproach } from "@/data/professionalApproach";
+import { remoteKitchenCase } from "@/data/remoteCollaboration";
 import { siteConfig } from "@/data/site";
 import { getSummerKitchenContent } from "@/lib/content";
 
@@ -125,6 +129,8 @@ export default function SummerKitchenPage() {
           </div>
         </section>
 
+        <RemoteKitchenCase content={remoteKitchenCase.ru} />
+
         <section className="section kitchen-gallery-section" aria-labelledby="real-object-title">
           <div className="section-heading">
             <p className="eyebrow">Реальный объект</p>
@@ -186,6 +192,8 @@ export default function SummerKitchenPage() {
             ))}
           </ul>
         </section>
+
+        <ProfessionalApproach content={professionalApproach.ru["summer-kitchen"]} />
 
         <section className="section kitchen-price-section" aria-labelledby="price-title">
           <div className="section-heading compact">

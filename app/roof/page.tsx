@@ -4,8 +4,12 @@ import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { RelatedDirections } from "@/components/RelatedDirections";
+import { ProfessionalApproach } from "@/components/ProfessionalApproach";
+import { RemoteCollaboration } from "@/components/RemoteCollaboration";
 import { contactConfig } from "@/data/contacts";
 import { relatedDirections } from "@/data/directions";
+import { professionalApproach } from "@/data/professionalApproach";
+import { remoteCollaboration } from "@/data/remoteCollaboration";
 import { siteConfig } from "@/data/site";
 import { getRoofContent } from "@/lib/content";
 
@@ -191,6 +195,10 @@ export default function RoofPage() {
             ))}
           </ul>
         </section>
+
+        <ProfessionalApproach content={professionalApproach.ru.roof} />
+
+        <RemoteCollaboration content={remoteCollaboration.ru.roof} />
 
         <section className="section faq-section" aria-labelledby="faq-title">
           <div className="section-heading compact">

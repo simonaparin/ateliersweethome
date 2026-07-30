@@ -5,7 +5,12 @@ import { notFound } from "next/navigation";
 import { ContactLinks } from "@/components/ContactLinks";
 import { Header } from "@/components/Header";
 import { InquiryForm } from "@/components/InquiryForm";
+import { LocalizedServiceLayout } from "@/components/LocalizedServiceLayout";
+import { ProfessionalApproach } from "@/components/ProfessionalApproach";
+import { RemoteCollaboration, RemoteKitchenCase } from "@/components/RemoteCollaboration";
 import { contactConfig } from "@/data/contacts";
+import { professionalApproach } from "@/data/professionalApproach";
+import { remoteCollaboration, remoteKitchenCase } from "@/data/remoteCollaboration";
 import enReconstruction from "@/content/en/reconstruction.json";
 import geReconstruction from "@/content/ka/reconstruction.json";
 import enRoof from "@/content/en/roof.json";
@@ -14,6 +19,7 @@ import enKitchen from "@/content/en/summer-kitchen.json";
 import geKitchen from "@/content/ge/summer-kitchen.json";
 import { full as enFull } from "@/content/en/full";
 import { full as geFull } from "@/content/ge/full";
+import { reconstructionAdditions } from "@/content/ge/reconstruction.additions";
 import ruReconstruction from "@/content/ru/reconstruction.json";
 import ruRoof from "@/content/ru/roof.draft.json";
 import ruKitchen from "@/content/ru/summer-kitchen.draft.json";
@@ -21,6 +27,19 @@ import ruKitchen from "@/content/ru/summer-kitchen.draft.json";
 const pages = { en: { reconstruction: enReconstruction, roof: enRoof, "summer-kitchen": enKitchen }, ge: { reconstruction: geReconstruction, roof: geRoof, "summer-kitchen": geKitchen } } as const;
 type Locale = keyof typeof pages;
 type Service = keyof typeof pages.en;
+
+const kitchenHero = {
+  en: {
+    title: "Outdoor kitchens and canopies for private homes in Georgia",
+    mainPhrase: "An outdoor kitchen is a canopy, work zone and utilities brought together into one place.",
+    text: "We plan the kitchen location, canopy structure and materials around the house, site and the client's wishes. We calculate snow load, build the base and connect water, drainage, electricity and lighting. Below is a real project: the client sent ChatGPT references, and we agreed the project and built the idea on site."
+  },
+  ge: {
+    title: "საზაფხულო სამზარეულოები და ფარდულები კერძო სახლებისთვის საქართველოში",
+    mainPhrase: "საზაფხულო სამზარეულო არის ფარდული, სამუშაო ზონა და კომუნიკაციები, რომლებიც ერთიან სივრცედაა შეკრებილი.",
+    text: "სამზარეულოს ადგილს, ფარდულის კონსტრუქციასა და მასალებს სახლის, ნაკვეთისა და დამკვეთის სურვილების მიხედვით ვგეგმავთ. ვითვლით თოვლის დატვირთვას, ვაკეთებთ საფუძველს და მოგვყავს წყალი, კანალიზაცია, ელექტროობა და განათება. ქვემოთ რეალური პროექტია: დამკვეთმა ChatGPT-ის რეფერენსები გამოგვიგზავნა, ჩვენ კი პროექტი შევათანხმეთ და იდეა ნაკვეთზე განვახორციელეთ."
+  }
+} as const;
 
 const ui = {
   en: {
@@ -55,25 +74,33 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
   const page: any = pages[locale]?.[service];
   if (!page) notFound();
   const t = ui[locale];
-  const complete: any = (locale === "en" ? enFull : geFull)[service];
+  const completeBase: any = (locale === "en" ? enFull : geFull)[service];
+  const complete: any = locale === "ge" && service === "reconstruction" ? { ...completeBase, ...reconstructionAdditions } : completeBase;
   const source: any = service === "reconstruction" ? ruReconstruction : service === "roof" ? ruRoof : ruKitchen;
-  const hero: any = page.hero ?? { title: page.title, mainPhrase: page.phrase, text: page.text, primaryCta: page.cta };
-  const faqSource = page.faq ?? complete.faq;
-  const faq = Array.isArray(faqSource) ? faqSource.map(([question, answer]: [string, string]) => ({ question, answer })) : faqSource?.items ?? [];
+  const hero: any = service === "summer-kitchen"
+    ? { ...kitchenHero[locale], primaryCta: page.cta }
+    : page.hero ?? { title: page.title, mainPhrase: page.phrase, text: page.text, primaryCta: page.cta };
+  const faqSource = complete.faq ?? page.faq;
+  const faqRaw = Array.isArray(faqSource) ? faqSource : faqSource?.items ?? [];
+  const faq = faqRaw.map((item: any) => Array.isArray(item) ? { question: item[0], answer: item[1] } : item);
   const form = page.form ?? { title: page.formTitle, text: page.formText, submit: page.cta };
   const fields = form.fields ?? t.fields;
   const formContent: any = { title: form.title, text: form.text, fields: { name: fields[0], contact: fields[1], location: fields[2], task: fields[3], start: fields[4], budget: fields[5], photos: fields[6] }, budgetHint: "", submit: form.submit, localMode: "", success: form.success ?? t.success, notSent: "" };
-  const scope = Array.isArray(page.scope) ? page.scope : page.scope?.items ?? [];
-  const situations = Array.isArray(page.situations) ? page.situations : page.situations?.items ?? complete.situations ?? [];
-  const check = page.inspection?.items ?? page.checkBeforeWork ?? page.siteCheck?.items ?? complete.siteCheck?.items ?? [];
-  const checkTitle = page.inspection?.title ?? page.checkTitle ?? page.siteCheck?.title ?? complete.siteCheck?.title ?? (service === "roof" ? t.roofCheck : t.kitchenCheck);
-  const checkText = page.inspection?.text ?? page.checkText ?? page.siteCheck?.text ?? complete.checkText ?? complete.siteCheck?.text;
-  const start = page.start?.steps ?? complete.start?.steps ?? t.startSteps;
-  const decisions = page.decisions ?? complete.decisions;
-  const workshop = page.workshop ?? complete.workshop;
+  const scope = Array.isArray(page.scope) ? page.scope : page.scope?.items ?? complete.scope ?? [];
+  const situations = complete.situations ?? (Array.isArray(page.situations) ? page.situations : page.situations?.items ?? []);
+  const check = complete.inspection?.items ?? complete.siteCheck?.items ?? page.inspection?.items ?? page.checkBeforeWork ?? page.siteCheck?.items ?? [];
+  const checkTitle = complete.inspection?.title ?? complete.siteCheck?.title ?? page.inspection?.title ?? page.checkTitle ?? page.siteCheck?.title ?? (service === "roof" ? t.roofCheck : t.kitchenCheck);
+  const checkText = complete.inspection?.text ?? complete.siteCheck?.text ?? complete.checkText ?? page.inspection?.text ?? page.checkText ?? page.siteCheck?.text;
+  const start = complete.start?.steps ?? page.start?.steps ?? t.startSteps;
+  const decisions = complete.decisions ?? page.decisions;
+  const workshop = complete.workshop ?? page.workshop;
   const caseTitle = page.case?.title ?? page.caseTitle ?? page.realObject?.title ?? page.neededRealCase?.publicDraft;
   const caseText = page.case?.text ?? page.caseText ?? page.realObject?.text ?? page.neededRealCase?.publicDraft;
   const images = service === "reconstruction" ? source.realPhotos.images : service === "roof" ? source.currentPhotos.images : source.realObject.images;
+  const structureLabels = { ...t, whenToContact: locale === "en" ? "When to contact us" : "როდის მოგვმართოთ" };
+  if (["reconstruction", "roof", "summer-kitchen"].includes(service)) {
+    return <LocalizedServiceLayout locale={locale} service={service} hero={hero} page={page} images={images} check={check} checkTitle={checkTitle} checkText={checkText} situations={situations} scope={scope} workshop={workshop} start={start} faq={faq} form={form} formContent={formContent} labels={structureLabels} />;
+  }
   const related = locale === "en"
     ? service === "reconstruction" ? [["Roofs", "roof"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : service === "roof" ? [["Old house reconstruction", "reconstruction"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : [["Old house reconstruction", "reconstruction"], ["Roofs", "roof"]]
     : service === "reconstruction" ? [["სახურავები", "roof"], ["საზაფხულო სამზარეულოები და ფარდულები", "summer-kitchen"]] : service === "roof" ? [["ძველი სახლის რეკონსტრუქცია", "reconstruction"], ["საზაფხულო სამზარეულოები და ფარდულები", "summer-kitchen"]] : [["ძველი სახლის რეკონსტრუქცია", "reconstruction"], ["სახურავები", "roof"]];
@@ -81,12 +108,15 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
   return <><Header locale={locale} activePath={`/${service}`} contacts={contactConfig} content={{ brand: "Atelier Sweet Home", writeLabel: locale === "en" ? "Write to us" : "მოგვწერეთ" }} />
     <main className="localized-page">
       <section className="hero-section material-hero"><div className="hero-copy"><p className="eyebrow">Tbilisi · Kakheti · Georgia</p><h1>{hero.title}</h1><p className="hero-phrase">{hero.mainPhrase}</p><p className="hero-text">{hero.text}</p><div className="hero-actions"><a className="primary-button" href="#contact-form">{hero.primaryCta}</a><a className="secondary-link" href="#work-start">{hero.secondaryCta ?? t.start}</a></div></div><figure className="hero-image hero-main-photo"><Image src={(source.hero?.image ?? images[0]).src} alt={hero.title} width={1320} height={980} priority sizes="(max-width: 900px) 100vw, 48vw" /></figure></section>
+      {service === "summer-kitchen" ? <RemoteKitchenCase content={remoteKitchenCase[locale]} /> : null}
       <Section eyebrow={t.inspection} title={checkTitle} text={checkText} dark><ul className="check-list">{check.map((item: string) => <li key={item}>{item}</li>)}</ul>{page.inspection?.note ? <p className="note">{page.inspection.note}</p> : null}</Section>
       <Section eyebrow={t.details} title={page.details?.title ?? page.realPhotos?.title ?? caseTitle} text={page.details?.text ?? page.realPhotos?.text ?? caseText}><div className="real-photo-grid">{images.slice(service === "reconstruction" ? 3 : 0, service === "reconstruction" ? 8 : 3).map((image: any) => <figure key={image.src}><Image src={image.src} alt={`${hero.title}: ${t.details}`} width={900} height={680} sizes="(max-width: 760px) 100vw, 33vw" /></figure>)}</div></Section>
       {page.modernLife ? <Section eyebrow={t.modernLife} title={page.modernLife.title} text={page.modernLife.text}><ul className="scope-list">{page.modernLife.items.map((item: string) => <li key={item}>{item}</li>)}</ul></Section> : null}
       <Section eyebrow={t.situations} title={page.situations?.title ?? (locale === "en" ? "When to contact us" : "როდის მოგვმართოთ")}><div className="situation-grid">{situations.map((item: any) => <article className="situation-item" key={typeof item === "string" ? item : item.title}><h3>{typeof item === "string" ? item : item.title}</h3>{typeof item === "object" ? <p>{item.text}</p> : null}</article>)}</div></Section>
       {service === "reconstruction" ? <Section eyebrow={t.decisions} title={decisions.title}><ul className="scope-list">{decisions.items.map((item: string) => <li key={item}>{item}</li>)}</ul><p className="note">{decisions.note}</p></Section> : null}
       <Section eyebrow={t.scope} title={page.scope?.title ?? page.scopeTitle} text={page.scope?.text}><ul className="scope-list">{scope.map((item: string) => <li key={item}>{item}</li>)}</ul></Section>
+      <ProfessionalApproach content={professionalApproach[locale][service]} />
+      {service !== "summer-kitchen" ? <RemoteCollaboration content={remoteCollaboration[locale][service]} /> : null}
       <Section eyebrow={t.realCase} title={caseTitle} text={caseText} />
       <Section eyebrow={t.workshop} title={workshop?.title ?? (locale === "en" ? "The way we work" : "როგორ ვმუშაობთ")} text={workshop?.text ?? (service === "roof" ? t.roofWorkshop : service === "summer-kitchen" ? t.kitchenWorkshop : "")}><p>{workshop?.extra}</p></Section>
       <Section eyebrow={t.start} title={page.start?.title ?? complete.start?.title ?? (locale === "en" ? "The first step is to show us the property" : "პირველი ნაბიჯია ობიექტის ჩვენება")}><ol className="steps-list" id="work-start">{start.map((item: string) => <li key={item}>{item}</li>)}</ol></Section>

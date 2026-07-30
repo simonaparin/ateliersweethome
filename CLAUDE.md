@@ -77,7 +77,7 @@ Avoid:
   before public launch.
 - Public phone: `+995555128231`.
 - WhatsApp: `https://wa.me/995555128231`.
-- Email: `AI7695-98@gmail.com`.
+- Email: `ai769598@gmail.com`.
 - Telegram bot receives form applications internally; do not show a public
   Telegram link unless an actual client-facing username/link is provided.
 - Current domain: `ateliersweethome.ge`.

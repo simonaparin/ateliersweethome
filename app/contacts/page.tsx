@@ -48,6 +48,12 @@ const contactRows = [
     value: contactConfig.email || "Не указан",
     href: contactConfig.email ? `mailto:${contactConfig.email}` : undefined,
     text: "Подходит для длинного описания, файлов и спокойной переписки."
+  },
+  {
+    title: "Форма заявки",
+    value: "Описать задачу",
+    href: "#contact-form",
+    text: "Можно приложить фотографии, указать место и рассказать, что хотите сделать. Заявка сразу приходит команде в Telegram."
   }
 ];
 
