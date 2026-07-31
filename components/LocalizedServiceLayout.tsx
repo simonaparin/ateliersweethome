@@ -54,6 +54,7 @@ export function LocalizedServiceLayout({ locale, service, hero, page, images, ch
       {situationsBlock}<Block eyebrow={labels.inspection} title={checkTitle} text={checkText} dark><ul className="check-list">{check.map((item: string) => <li key={item}>{item}</li>)}</ul></Block>{scopeBlock}
       <ProfessionalApproach content={professionalApproach[localizedLocale]["summer-kitchen"]} />
       <Block eyebrow={labels.workshop} title={workshop?.title} text={workshop?.text}><p>{workshop?.extra}</p></Block>
+      {page.price ? <Block eyebrow={labels.price} title={page.price.title} text={page.price.text} /> : null}
       <Block eyebrow={labels.start} title={page.start?.title}><ol className="steps-list" id="work-start">{start.map((item: string) => <li key={item}>{item}</li>)}</ol></Block>
       {faqBlock}{relatedBlock}{contactBlock}
     </> : null}
