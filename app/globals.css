@@ -1632,6 +1632,14 @@ h3 {
     font-size: 13px;
   }
 
+  .direction-list--en .direction-row[href]::after {
+    content: "Open";
+  }
+
+  .direction-list--ge .direction-row[href]::after {
+    content: "გახსნა";
+  }
+
   .floating-contact {
     display: none;
   }
