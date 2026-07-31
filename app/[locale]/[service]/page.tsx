@@ -29,6 +29,17 @@ const pages = { en: { reconstruction: enReconstruction, roof: enRoof, "summer-ki
 type Locale = keyof typeof pages;
 type Service = keyof typeof pages.en;
 
+const compactDescriptions = {
+  en: {
+    roof: "Roof repair and replacement for old private homes in Georgia: we inspect rafters and covering, plan the work and agree the first step from photos or a visit.",
+    "summer-kitchen": "Outdoor kitchens and canopies in Georgia: a practical project for a private home, including the base, structure, utilities, lighting and a comfortable work and dining area."
+  },
+  ge: {
+    roof: "ძველი კერძო სახლების სახურავის შეკეთება და შეცვლა საქართველოში: ვაფასებთ კოჭებსა და საფარს, ვგეგმავთ სამუშაოს და ვაზუსტებთ პირველ ნაბიჯს ფოტოებით ან დათვალიერებით.",
+    "summer-kitchen": "საზაფხულო სამზარეულოები და ფარდულები საქართველოში: კერძო სახლისთვის ვაწყობთ საფუძველს, კონსტრუქციას, კომუნიკაციებს, განათებასა და მოსახერხებელ სამუშაო და სასადილო ზონას."
+  }
+} as const;
+
 const kitchenHero = {
   en: {
     title: "Outdoor kitchens and canopies for private homes in Georgia",
@@ -62,7 +73,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   const page: any = pages[locale]?.[service];
   if (!page) return {};
   const title = page.seo?.title ?? page.title;
-  const description = page.seo?.description ?? page.text;
+  const description = compactDescriptions[locale][service as "roof" | "summer-kitchen"] ?? page.seo?.description ?? page.text;
   const image = service === "reconstruction"
     ? "/images/reconstruction/hero/house-t-restored-clean.png"
     : service === "roof"
