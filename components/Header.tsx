@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { HeaderContent } from "@/types/content";
 import type { ContactConfig } from "@/data/contacts";
+import { siteConfig } from "@/data/site";
 
 type HeaderProps = {
   content: HeaderContent;
@@ -13,9 +14,11 @@ export function Header({ content, contacts, activePath = "/reconstruction", loca
   const hasContact = Boolean(contacts.whatsapp || contacts.telegram || contacts.email);
   const localizedPath = (target: "ru" | "en" | "ge") => target === "ru" ? activePath : `/${target}${activePath}`;
   const contactsPath = locale === "ru" ? "/contacts" : `/${locale}/contacts`;
+  const homeSchema = locale !== "ru" && activePath === "/" ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}`, telephone: "+995555128231", email: "ai769598@gmail.com", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian" } : null;
 
   return (
     <header className="site-header">
+      {homeSchema ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }} /> : null}
       <Link className="brand" href={locale === "ru" ? "/" : `/${locale}`} aria-label="Atelier Sweet Home">
         {content.brand}
       </Link>

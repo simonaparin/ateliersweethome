@@ -43,7 +43,9 @@ export default async function LocalContacts({ params }: { params: Promise<{ loca
   const { locale } = await params;
   const c = copy[locale];
   if (!c) notFound();
+  const schema = { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}/contacts`, telephone: "+995555128231", email: "ai769598@gmail.com", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian", contactPoint: [{ "@type": "ContactPoint", telephone: "+995555128231", contactType: "customer service", availableLanguage: locale === "en" ? "English" : "Georgian" }] };
   return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <Header locale={locale} activePath="/contacts" contacts={contactConfig} content={{ brand: "Atelier Sweet Home", writeLabel: c.write }} />
     <main>
       <section className="contacts-hero" aria-labelledby="contacts-title"><div><p className="eyebrow">{c.eyebrow}</p><h1 id="contacts-title">{c.title}</h1></div><p className="hero-text">{c.text}</p></section>

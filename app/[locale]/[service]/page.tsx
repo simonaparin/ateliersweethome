@@ -75,6 +75,10 @@ function Section({ eyebrow, title, text, children, dark = false }: { eyebrow: st
   return <section className={`section ${dark ? "split-section dark-check-section" : ""}`}><div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2>{title}</h2>{text ? <p>{text}</p> : null}</div>{children}</section>;
 }
 
+function JsonLd({ data }: { data: Record<string, unknown> }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+}
+
 export default async function LocalizedService({ params }: { params: Promise<{ locale: Locale; service: Service }> }) {
   const { locale, service } = await params;
   const page: any = pages[locale]?.[service];
@@ -114,8 +118,41 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
       }
     } : {})
   };
+  const title = page.seo?.title ?? page.title;
+  const description = page.seo?.description ?? page.text;
+  const pageUrl = `${siteConfig.siteUrl}/${locale}/${service}`;
+  const organizationId = `${siteConfig.siteUrl}/#organization`;
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": organizationId,
+    name: siteConfig.name,
+    url: siteConfig.siteUrl,
+    telephone: "+995555128231",
+    email: "ai769598@gmail.com",
+    areaServed: ["Tbilisi", "Kakheti", "Georgia"]
+  };
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description,
+    url: pageUrl,
+    provider: { "@id": organizationId },
+    areaServed: "Georgia",
+    availableLanguage: locale === "en" ? "English" : "Georgian"
+  };
+  const faqSchema = faq.length ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faq.map((item: { question: string; answer: string }) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer }
+    }))
+  } : null;
   if (["reconstruction", "roof", "summer-kitchen"].includes(service)) {
-    return <LocalizedServiceLayout locale={locale} service={service} hero={hero} heroImage={source.hero?.image} heroSideImages={service === "reconstruction" ? [images[2], images[4]].filter(Boolean) : []} page={localizedPage} images={images} check={check} checkTitle={checkTitle} checkText={checkText} situations={situations} scope={scope} workshop={workshop} start={start} faq={faq} form={form} formContent={formContent} labels={structureLabels} />;
+    return <><JsonLd data={organizationSchema} /><JsonLd data={serviceSchema} />{faqSchema ? <JsonLd data={faqSchema} /> : null}<LocalizedServiceLayout locale={locale} service={service} hero={hero} heroImage={source.hero?.image} heroSideImages={service === "reconstruction" ? [images[2], images[4]].filter(Boolean) : []} page={localizedPage} images={images} check={check} checkTitle={checkTitle} checkText={checkText} situations={situations} scope={scope} workshop={workshop} start={start} faq={faq} form={form} formContent={formContent} labels={structureLabels} /></>;
   }
   const related = locale === "en"
     ? service === "reconstruction" ? [["Roofs", "roof"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : service === "roof" ? [["Old house reconstruction", "reconstruction"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : [["Old house reconstruction", "reconstruction"], ["Roofs", "roof"]]
