@@ -2,17 +2,18 @@ import Image from "next/image";
 import type { ProjectCase } from "@/data/projects";
 
 type ProjectCasesProps = {
+  eyebrow?: string;
   title: string;
   emptyText: string;
   cases: ProjectCase[];
 };
 
-export function ProjectCases({ title, emptyText, cases }: ProjectCasesProps) {
+export function ProjectCases({ eyebrow = "Доказательства", title, emptyText, cases }: ProjectCasesProps) {
   if (cases.length === 0) {
     return (
       <section className="section muted-section" aria-labelledby="cases-title">
         <div className="section-heading">
-          <p className="eyebrow">Доказательства</p>
+        <p className="eyebrow">{eyebrow}</p>
           <h2 id="cases-title">{title}</h2>
         </div>
         <p className="empty-cases">{emptyText}</p>
@@ -23,7 +24,7 @@ export function ProjectCases({ title, emptyText, cases }: ProjectCasesProps) {
   return (
     <section className="section" aria-labelledby="cases-title">
       <div className="section-heading">
-        <p className="eyebrow">Доказательства</p>
+          <p className="eyebrow">{eyebrow}</p>
         <h2 id="cases-title">{title}</h2>
       </div>
       <div className="case-list">

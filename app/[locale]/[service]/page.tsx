@@ -105,7 +105,7 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
   const images = service === "reconstruction" ? source.realPhotos.images : service === "roof" ? source.currentPhotos.images : source.realObject.images;
   const structureLabels = { ...t, whenToContact: locale === "en" ? "When to contact us" : "როდის მოგვმართოთ" };
   if (["reconstruction", "roof", "summer-kitchen"].includes(service)) {
-    return <LocalizedServiceLayout locale={locale} service={service} hero={hero} page={{ ...page, ...complete }} images={images} check={check} checkTitle={checkTitle} checkText={checkText} situations={situations} scope={scope} workshop={workshop} start={start} faq={faq} form={form} formContent={formContent} labels={structureLabels} />;
+    return <LocalizedServiceLayout locale={locale} service={service} hero={hero} heroImage={source.hero?.image} heroSideImages={service === "reconstruction" ? [images[2], images[4]].filter(Boolean) : []} page={{ ...page, ...complete }} images={images} check={check} checkTitle={checkTitle} checkText={checkText} situations={situations} scope={scope} workshop={workshop} start={start} faq={faq} form={form} formContent={formContent} labels={structureLabels} />;
   }
   const related = locale === "en"
     ? service === "reconstruction" ? [["Roofs", "roof"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : service === "roof" ? [["Old house reconstruction", "reconstruction"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : [["Old house reconstruction", "reconstruction"], ["Roofs", "roof"]]
