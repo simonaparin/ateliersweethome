@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { contactConfig } from "@/data/contacts";
+import { siteConfig } from "@/data/site";
 import type { FormContent } from "@/types/content";
 
 const copy = {
@@ -34,7 +35,8 @@ export function generateStaticParams() { return [{ locale: "en" }, { locale: "ge
 export async function generateMetadata({ params }: { params: Promise<{ locale: "en" | "ge" }> }): Promise<Metadata> {
   const { locale } = await params;
   const c = copy[locale];
-  return { title: `${c.title} | Atelier Sweet Home`, description: c.text, alternates: { canonical: `/${locale}/contacts`, languages: { ru: "/contacts", en: "/en/contacts", ka: "/ge/contacts" } } };
+  const title = `${c.title} | Atelier Sweet Home`;
+  return { title, description: c.text, alternates: { canonical: `/${locale}/contacts`, languages: { ru: "/contacts", en: "/en/contacts", ka: "/ge/contacts" } }, openGraph: { title, description: c.text, url: `/${locale}/contacts`, siteName: siteConfig.name, locale: locale === "en" ? "en_GE" : "ka_GE", type: "website", images: [{ url: "/images/reconstruction/hero/house-t-restored-clean.png", width: 1280, height: 960, alt: title }] } };
 }
 
 export default async function LocalContacts({ params }: { params: Promise<{ locale: "en" | "ge" }> }) {
