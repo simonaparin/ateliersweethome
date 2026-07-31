@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const headerContent = {
   brand: "Atelier Sweet Home",
-  writeLabel: "Написать"
+  writeLabel: "Связаться с нами"
 };
 
 const directions = [

@@ -687,12 +687,14 @@ h3 {
 
 .home-direction[href="/roof"] img {
   object-fit: contain;
+  object-position: center top;
   padding: 10px;
   background: var(--dark-soft);
 }
 
 .home-direction[href="/summer-kitchen"] img {
   object-fit: contain;
+  object-position: center top;
   background: var(--dark-soft);
 }
 

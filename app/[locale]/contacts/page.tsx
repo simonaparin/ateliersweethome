@@ -8,7 +8,7 @@ import type { FormContent } from "@/types/content";
 
 const copy = {
   en: {
-    eyebrow: "Contact", title: "Show us the property and briefly describe the task", text: "Send photos of the house, roof or site and tell us what you would like to do.", write: "Write to us", channels: "How to contact us", recommendation: "What to include in a request", formLabel: "Request form",
+    eyebrow: "Contact", title: "Show us the property and briefly describe the task", text: "Send photos of the house, roof or site and tell us what you would like to do.", write: "Contact us", channels: "How to contact us", recommendation: "What to include in a request", formLabel: "Request form",
     rows: [
       ["Phone", "+995555128231", "Call or send a message to start with a short conversation.", "tel:+995555128231"],
       ["WhatsApp", "Open WhatsApp", "Convenient for photographs, location and a short voice message.", "https://wa.me/995555128231"],

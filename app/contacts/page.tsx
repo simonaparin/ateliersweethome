@@ -8,7 +8,7 @@ import type { FormContent } from "@/types/content";
 
 const headerContent = {
   brand: "Atelier Sweet Home",
-  writeLabel: "Написать"
+  writeLabel: "Связаться с нами"
 };
 
 const formContent: FormContent = {

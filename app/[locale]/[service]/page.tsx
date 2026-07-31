@@ -11,6 +11,7 @@ import { RemoteCollaboration, RemoteKitchenCase } from "@/components/RemoteColla
 import { contactConfig } from "@/data/contacts";
 import { professionalApproach } from "@/data/professionalApproach";
 import { remoteCollaboration, remoteKitchenCase } from "@/data/remoteCollaboration";
+import { siteConfig } from "@/data/site";
 import enReconstruction from "@/content/en/reconstruction.json";
 import geReconstruction from "@/content/ka/reconstruction.json";
 import enRoof from "@/content/en/roof.json";
@@ -62,7 +63,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
   if (!page) return {};
   const title = page.seo?.title ?? page.title;
   const description = page.seo?.description ?? page.text;
-  return { title, description, alternates: { canonical: `/${locale}/${service}`, languages: { ru: `/${service}`, en: `/en/${service}`, ka: `/ge/${service}` } }, openGraph: { title, description, url: `/${locale}/${service}`, locale: locale === "en" ? "en_GE" : "ka_GE", type: "website" } };
+  const image = service === "reconstruction"
+    ? "/images/reconstruction/hero/house-t-restored-clean.png"
+    : service === "roof"
+      ? "/images/roof/projects/roof-after-new-profiled-sheet.jpg"
+      : "/images/summer-kitchen/projects/summer-kitchen-yard-wide-view.jpg";
+  return { title, description, alternates: { canonical: `/${locale}/${service}`, languages: { ru: `/${service}`, en: `/en/${service}`, ka: `/ge/${service}` } }, openGraph: { title, description, url: `/${locale}/${service}`, siteName: siteConfig.name, locale: locale === "en" ? "en_GE" : "ka_GE", type: "website", images: [{ url: image, alt: title }] } };
 }
 
 function Section({ eyebrow, title, text, children, dark = false }: { eyebrow: string; title: string; text?: string; children?: React.ReactNode; dark?: boolean }) {
@@ -105,7 +111,7 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
     ? service === "reconstruction" ? [["Roofs", "roof"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : service === "roof" ? [["Old house reconstruction", "reconstruction"], ["Outdoor kitchens and canopies", "summer-kitchen"]] : [["Old house reconstruction", "reconstruction"], ["Roofs", "roof"]]
     : service === "reconstruction" ? [["სახურავები", "roof"], ["საზაფხულო სამზარეულოები და ფარდულები", "summer-kitchen"]] : service === "roof" ? [["ძველი სახლის რეკონსტრუქცია", "reconstruction"], ["საზაფხულო სამზარეულოები და ფარდულები", "summer-kitchen"]] : [["ძველი სახლის რეკონსტრუქცია", "reconstruction"], ["სახურავები", "roof"]];
 
-  return <><Header locale={locale} activePath={`/${service}`} contacts={contactConfig} content={{ brand: "Atelier Sweet Home", writeLabel: locale === "en" ? "Write to us" : "მოგვწერეთ" }} />
+  return <><Header locale={locale} activePath={`/${service}`} contacts={contactConfig} content={{ brand: "Atelier Sweet Home", writeLabel: locale === "en" ? "Contact us" : "დაგვიკავშირდით" }} />
     <main className="localized-page">
       <section className="hero-section material-hero"><div className="hero-copy"><p className="eyebrow">Tbilisi · Kakheti · Georgia</p><h1>{hero.title}</h1><p className="hero-phrase">{hero.mainPhrase}</p><p className="hero-text">{hero.text}</p><div className="hero-actions"><a className="primary-button" href="#contact-form">{hero.primaryCta}</a><a className="secondary-link" href="#work-start">{hero.secondaryCta ?? t.start}</a></div></div><figure className="hero-image hero-main-photo"><Image src={(source.hero?.image ?? images[0]).src} alt={hero.title} width={1320} height={980} priority sizes="(max-width: 900px) 100vw, 48vw" /></figure></section>
       {service === "summer-kitchen" ? <RemoteKitchenCase content={remoteKitchenCase[locale]} /> : null}
