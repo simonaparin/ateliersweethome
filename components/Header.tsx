@@ -15,6 +15,11 @@ export function Header({ content, contacts, activePath = "/reconstruction", loca
   const localizedPath = (target: "ru" | "en" | "ge") => target === "ru" ? activePath : `/${target}${activePath}`;
   const contactsPath = locale === "ru" ? "/contacts" : `/${locale}/contacts`;
   const homeSchema = locale !== "ru" && activePath === "/" ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}`, telephone: "+995555128231", email: "ai769598@gmail.com", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian" } : null;
+  const services = locale === "ru"
+    ? [["Реконструкция", "/reconstruction"], ["Крыши", "/roof"], ["Летние кухни", "/summer-kitchen"]]
+    : locale === "en"
+      ? [["Reconstruction", "/reconstruction"], ["Roofs", "/roof"], ["Outdoor kitchens", "/summer-kitchen"]]
+      : [["რეკონსტრუქცია", "/reconstruction"], ["სახურავები", "/roof"], ["საზაფხულო სამზარეულოები", "/summer-kitchen"]];
 
   return (
     <header className="site-header">
@@ -22,6 +27,10 @@ export function Header({ content, contacts, activePath = "/reconstruction", loca
       <Link className="brand" href={locale === "ru" ? "/" : `/${locale}`} aria-label="Atelier Sweet Home">
         {content.brand}
       </Link>
+
+      <nav className="service-links" aria-label={locale === "ru" ? "Направления работ" : locale === "en" ? "Services" : "მომსახურებები"}>
+        {services.map(([label, path]) => <Link key={path} href={locale === "ru" ? path : `/${locale}${path}`} aria-current={activePath === path ? "page" : undefined}>{label}</Link>)}
+      </nav>
 
       <div className="header-actions" aria-label="Language and contact controls">
         <nav className="language-switcher" aria-label="Language">
