@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
@@ -7,6 +6,7 @@ import { ProjectCases } from "@/components/ProjectCases";
 import { ProfessionalApproach } from "@/components/ProfessionalApproach";
 import { RemoteCollaboration } from "@/components/RemoteCollaboration";
 import { RelatedDirections } from "@/components/RelatedDirections";
+import { ReconstructionHeroCollage, ReconstructionInteriorCollage } from "@/components/ReconstructionPhotoCollages";
 import { contactConfig } from "@/data/contacts";
 import { relatedDirections } from "@/data/directions";
 import { professionalApproach } from "@/data/professionalApproach";
@@ -52,12 +52,6 @@ function JsonLd({ data }: { data: Record<string, unknown> }) {
 }
 
 export default function ReconstructionPage() {
-  const heroSideImages = [
-    content.realPhotos.images[2],
-    content.realPhotos.images[4]
-  ].filter(Boolean);
-  const materialImages = content.realPhotos.images.slice(3, 8);
-
   const professionalServiceSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -128,33 +122,7 @@ export default function ReconstructionPage() {
               </div>
             </div>
           </div>
-          <div className="hero-photo-ledger" aria-label="Real old house photos">
-            <figure className="hero-image hero-main-photo">
-              <Image
-                src={content.hero.image.src}
-                alt={content.hero.image.alt}
-                width={1320}
-                height={980}
-                priority
-                sizes="(max-width: 900px) 100vw, 48vw"
-              />
-              <figcaption>{content.hero.image.caption}</figcaption>
-            </figure>
-            <div className="hero-photo-stack">
-              {heroSideImages.map((image) => (
-                <figure className="hero-image" key={image.src}>
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    width={780}
-                    height={620}
-                    sizes="(max-width: 900px) 100vw, 22vw"
-                  />
-                  {image.caption ? <figcaption>{image.caption}</figcaption> : null}
-                </figure>
-              ))}
-            </div>
-          </div>
+          <ReconstructionHeroCollage houseAlt={content.hero.image.alt} interiorAlt="Интерьер дома Т с буфетом и столом" verandaAlt="Веранда дома Т после восстановления" />
         </section>
 
         <section className="section split-section dark-check-section" aria-labelledby="inspection-title">
@@ -181,20 +149,7 @@ export default function ReconstructionPage() {
             </div>
             <p>{content.realPhotos.text}</p>
           </div>
-          <div className="real-photo-grid">
-            {materialImages.map((image) => (
-              <figure key={image.src}>
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={900}
-                  height={680}
-                  sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                />
-                {image.caption ? <figcaption>{image.caption}</figcaption> : null}
-              </figure>
-            ))}
-          </div>
+          <ReconstructionInteriorCollage verandaAlt="Веранда дома Т с красной стеной" plantsAlt="Светлая комната дома Т с растениями" buffetAlt="Интерьер дома Т с буфетом" />
         </section>
 
         <section className="section split-section" aria-labelledby="modern-life-title">

@@ -346,6 +346,48 @@ h3 {
   min-height: calc((100vh - 119px) / 2);
 }
 
+.reconstruction-hero-collage,
+.reconstruction-interior-collage,
+.reconstruction-interior-collage__right {
+  display: grid;
+  gap: 4px;
+  background: #171717;
+}
+
+.reconstruction-hero-collage {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1.24fr 0.76fr;
+  min-height: calc(100vh - 130px);
+}
+
+.reconstruction-hero-collage .reconstruction-collage-photo--house {
+  grid-column: 1 / -1;
+}
+
+.reconstruction-interior-collage {
+  grid-template-columns: 0.58fr 1fr;
+  min-height: 680px;
+}
+
+.reconstruction-interior-collage__right {
+  grid-template-columns: 1fr 1fr;
+}
+
+.reconstruction-collage-photo {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #171717;
+}
+
+.reconstruction-collage-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero-image figcaption,
 .profile-image figcaption,
 .case-images figcaption,
@@ -1440,6 +1482,11 @@ h3 {
     min-height: 420px;
   }
 
+  .reconstruction-hero-collage,
+  .reconstruction-interior-collage {
+    min-height: 420px;
+  }
+
   .summer-hero-copy {
     padding: 34px;
   }
@@ -1551,9 +1598,27 @@ h3 {
   }
 
   .material-hero .hero-copy,
-  .material-hero .hero-photo-ledger {
+  .material-hero .hero-photo-ledger,
+  .material-hero .reconstruction-hero-collage {
     width: 100%;
     min-width: 0;
+  }
+
+  .reconstruction-hero-collage {
+    min-height: 560px;
+  }
+
+  .reconstruction-interior-collage {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .reconstruction-interior-collage > .reconstruction-collage-photo {
+    min-height: 460px;
+  }
+
+  .reconstruction-interior-collage__right {
+    min-height: 360px;
   }
 
   .material-hero h1,
