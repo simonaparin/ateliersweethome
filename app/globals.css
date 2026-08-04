@@ -1364,6 +1364,119 @@ h3 {
   opacity: 0.7;
 }
 
+/* Compact message composer used across all contact blocks. */
+.inquiry-form--message {
+  gap: 0;
+  overflow: hidden;
+  padding: 0;
+  border-color: rgba(241, 236, 227, 0.34);
+  background: rgba(241, 236, 227, 0.04);
+}
+
+.inquiry-form--message textarea {
+  min-height: 164px;
+  padding: 18px;
+  border: 0;
+  border-bottom: 1px solid rgba(241, 236, 227, 0.28);
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.inquiry-form--message .inquiry-contact {
+  gap: 6px;
+  padding: 13px 18px 15px;
+  border-bottom: 1px solid rgba(241, 236, 227, 0.28);
+}
+
+.inquiry-form--message .inquiry-contact input {
+  min-height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 15px;
+}
+
+.inquiry-form--message input::placeholder,
+.inquiry-form--message textarea::placeholder {
+  color: rgba(241, 236, 227, 0.5);
+}
+
+.inquiry-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  opacity: 0 !important;
+}
+
+.inquiry-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 58px;
+  padding: 8px 10px 8px 15px;
+}
+
+.inquiry-attach {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px !important;
+  color: var(--light-text) !important;
+  cursor: pointer;
+  font-size: 14px !important;
+  font-weight: 700;
+}
+
+.inquiry-attach input { display: none; }
+
+.inquiry-send {
+  min-height: 40px;
+  padding: 0 15px;
+  border: 1px solid var(--light-text);
+  background: var(--light-text);
+  color: var(--dark);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.inquiry-send:disabled { cursor: wait; opacity: 0.7; }
+
+.inquiry-files {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid rgba(241, 236, 227, 0.28);
+}
+
+.inquiry-files li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 16px;
+  color: rgba(241, 236, 227, 0.86);
+  font-size: 13px;
+}
+
+.inquiry-files button {
+  width: 26px;
+  height: 26px;
+  border: 0;
+  background: transparent;
+  color: var(--light-text);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.inquiry-form--message .form-status { margin: 0 12px 12px; }
+
 .site-footer {
   display: flex;
   align-items: flex-start;
