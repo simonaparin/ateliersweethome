@@ -13,6 +13,7 @@ export type HeaderContent = {
 export type FormContent = {
   title: string;
   text: string;
+  message?: string;
   fields: {
     name: string;
     contact: string;
