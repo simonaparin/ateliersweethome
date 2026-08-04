@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { MessageComposer, type MessageComposerCopy } from "@/components/MessageComposer";
+import { ReconstructionHeroCollage, ReconstructionInteriorCollage } from "@/components/ReconstructionPhotoCollages";
 import { contactConfig } from "@/data/contacts";
 
 type Locale = "ru" | "en" | "ge";
@@ -54,12 +55,6 @@ const copies: Record<Locale, Copy> = {
   }
 };
 
-const heroImages = [
-  "/images/reconstruction/hero/house-t-restored-clean.png",
-  "/images/reconstruction/projects/house-t/house-t-buffet-and-table.jpg",
-  "/images/reconstruction/projects/house-t/house-t-veranda-wide.jpg",
-];
-
 const projectImages = ["/images/reconstruction/hero/house-t-restored-clean.png", "/images/roof/projects/roof-after-new-profiled-sheet.jpg", "/images/summer-kitchen/projects/summer-kitchen-yard-wide-view.jpg"];
 
 export function HomePageLayout({ locale }: { locale: Locale }) {
@@ -74,11 +69,10 @@ export function HomePageLayout({ locale }: { locale: Locale }) {
   return <>
     <Header locale={locale} content={{ brand: "Atelier Sweet Home", writeLabel: c.write }} contacts={contactConfig} activePath="/" />
     <main className="home-page">
-      <section className="home-station" aria-labelledby="home-title"><div className="home-intro"><p className="eyebrow">{c.area}</p><h1 id="home-title">{c.title}</h1><p className="hero-phrase">{c.lead}</p><p className="hero-text">{c.heroText}</p><a className="primary-button" href="#inspection">{c.heroAction}</a><p className="home-hero-caption">{c.projects[0].meta}</p></div><div className="home-direction-grid" aria-label={c.projectsTitle}>{heroImages.map((src, index) => <figure key={src}><Image src={src} alt={c.projects[0].title} width={900} height={1100} priority={index === 0} sizes="(max-width: 980px) 100vw, 44vw" /></figure>)}</div></section>
+      <section className="home-station" aria-labelledby="home-title"><div className="home-intro"><p className="eyebrow">{c.area}</p><h1 id="home-title">{c.title}</h1><p className="hero-phrase">{c.lead}</p><p className="hero-text">{c.heroText}</p><a className="primary-button" href="#inspection">{c.heroAction}</a><p className="home-hero-caption">{c.projects[0].meta}</p></div><ReconstructionHeroCollage houseAlt={c.projects[0].title} interiorAlt={c.characterPhotos} verandaAlt={c.projects[0].title} /></section>
       <section className="home-inspection" id="inspection"><div className="home-inspection__copy"><p className="eyebrow">{c.inspectionEyebrow}</p><h2>{c.inspectionTitle}</h2><p>{c.inspectionIntro}</p><p>{c.inspectionVisit}</p><p className="home-emphasis">{c.inspectionParts}</p><p>{c.inspectionResults}</p><p className="home-emphasis">{c.inspectionResultText}</p><p>{c.inspectionBudget}</p><p className="home-note">{c.inspectionNote}</p><p>{c.inspectionAction}</p></div><div><a className="home-whatsapp" href={contactConfig.whatsapp}>WhatsApp</a><MessageComposer copy={c.inspectionComposer} pageTitle={c.inspectionTitle} /></div></section>
       <section className="section home-character"><div className="section-heading"><p className="eyebrow">{c.characterEyebrow}</p><h2>{c.characterTitle}</h2></div><div className="home-character__body"><div>{c.character.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<p className="home-photo-caption">{c.characterPhotos}</p></div></div></section>
-      <section className="home-photo-band" aria-label={c.characterPhotos}><figure><Image src="/images/reconstruction/projects/house-t/house-t-veranda-red-wall.jpg" alt="House T veranda" fill sizes="(max-width: 620px) 100vw, 34vw" /></figure><figure><Image src="/images/reconstruction/projects/house-t/house-t-room-plants.jpg" alt="House T interior" fill sizes="(max-width: 620px) 100vw, 33vw" /></figure><figure><Image src="/images/reconstruction/projects/house-t/house-t-buffet-and-dog.jpg" alt="House T interior detail" fill sizes="(max-width: 620px) 100vw, 33vw" /></figure></section>
-      <section className="home-detail-gallery" aria-label={c.characterPhotos}><figure><Image src="/images/reconstruction/projects/house-t/house-t-night-veranda.jpg" alt="House T veranda" fill sizes="(max-width: 620px) 100vw, 25vw" /></figure><figure><Image src="/images/reconstruction/projects/house-t/house-t-kitchen-interior.jpg" alt="House T kitchen" fill sizes="(max-width: 620px) 100vw, 25vw" /></figure><figure><Image src="/images/reconstruction/projects/house-t/house-t-room-restored-interior.jpg" alt="House T room" fill sizes="(max-width: 620px) 100vw, 25vw" /></figure><figure><Image src="/images/reconstruction/projects/house-t/house-t-bathroom.jpg" alt="House T bathroom" fill sizes="(max-width: 620px) 100vw, 25vw" /></figure></section>
+      <ReconstructionInteriorCollage verandaAlt={c.projects[0].title} plantsAlt={c.characterPhotos} buffetAlt={c.characterPhotos} />
       <section className="section home-responsibility"><article><p className="eyebrow">{c.responsibilityEyebrow}</p><h2>{c.responsibilityTitle}</h2>{c.responsibility.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</article><article><p className="eyebrow">{layoutLabels.remote}</p><h2>{c.remoteTitle}</h2>{c.remote.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<p className="home-remote-caption">{c.remoteCaption}</p></article></section>
       <section className="home-process"><p className="eyebrow">{layoutLabels.process}</p><h2>{layoutLabels.processTitle}</h2><p>{layoutLabels.processLine}</p></section>
       <section className="section home-projects"><div className="section-heading"><p className="eyebrow">{c.projectsEyebrow}</p><h2>{c.projectsTitle}</h2></div><div className="home-projects__grid">{c.projects.map((project, index) => <Link href={serviceHref(["/reconstruction", "/roof", "/summer-kitchen"][index])} key={project.title}><figure><Image src={projectImages[index]} alt={project.title} width={980} height={700} sizes="(max-width: 980px) 100vw, 32vw" /></figure><h3>{project.title}</h3><p className="project-meta">{project.meta}</p><p>{project.text}</p><span>{project.action}</span></Link>)}</div></section>
