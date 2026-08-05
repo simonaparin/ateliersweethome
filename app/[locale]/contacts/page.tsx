@@ -51,7 +51,7 @@ export default async function LocalContacts({ params }: { params: Promise<{ loca
       <section className="contacts-hero" aria-labelledby="contacts-title"><div><p className="eyebrow">{c.eyebrow}</p><h1 id="contacts-title">{c.title}</h1></div><p className="hero-text">{c.text}</p></section>
       <section className="section contact-options-section" aria-labelledby="channels-title"><div className="section-heading"><p className="eyebrow">{c.eyebrow}</p><h2 id="channels-title">{c.channels}</h2></div><div className="contact-option-grid">{c.rows.map(([title, value, text, href]) => <article key={title}><span>{title}</span><a href={href}>{value}</a><p>{text}</p></article>)}</div></section>
       <section className="section split-section dark-check-section"><div className="section-heading"><p className="eyebrow">{c.formLabel}</p><h2>{c.recommendation}</h2><p>{c.form.text}</p></div><ul className="check-list"><li>{c.form.fields.photos}</li><li>{c.form.fields.location}</li><li>{c.form.fields.task}</li><li>{c.form.fields.contact}</li></ul></section>
-      <section className="section contact-section"><div className="contact-copy"><p className="eyebrow">{c.formLabel}</p><h2>{c.form.title}</h2><p>{c.form.text}</p><ContactLinks contacts={contactConfig} /></div><InquiryForm content={c.form as FormContent} /></section>
+      <section className="section contact-section"><div className="contact-copy"><p className="eyebrow">{c.formLabel}</p><h2>{c.form.title}</h2><p>{c.form.text}</p><ContactLinks contacts={contactConfig} /></div><InquiryForm content={c.form as FormContent} locale={locale} /></section>
     </main>
   </>;
 }

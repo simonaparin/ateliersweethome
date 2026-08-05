@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { headers } from "next/headers";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { FloatingContact } from "@/components/FloatingContact";
@@ -23,9 +24,16 @@ export const metadata: Metadata = {
   description: "Реконструкция старых домов в Грузии"
 };
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const requestHeaders = await headers();
+  const language = requestHeaders.get("x-sweet-home-lang") === "en"
+    ? "en"
+    : requestHeaders.get("x-sweet-home-lang") === "ka"
+      ? "ka"
+      : "ru";
+
   return (
-    <html lang="ru" className={`${displayFont.variable} ${bodyFont.variable}`}>
+    <html lang={language} className={`${displayFont.variable} ${bodyFont.variable}`}>
       <body>
         {children}
         <FloatingContact />

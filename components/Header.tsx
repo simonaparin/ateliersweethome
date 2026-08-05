@@ -24,9 +24,12 @@ export function Header({ content, contacts, activePath = "/reconstruction", loca
   return (
     <header className="site-header">
       {homeSchema ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }} /> : null}
-      <Link className="brand" href={locale === "ru" ? "/" : `/${locale}`} aria-label="Atelier Sweet Home">
-        {content.brand}
-      </Link>
+      <div className="header-topline">
+        <Link className="brand" href={locale === "ru" ? "/" : `/${locale}`} aria-label="Atelier Sweet Home">
+          {content.brand}
+        </Link>
+        {contacts.whatsapp ? <a className="header-whatsapp" href={contacts.whatsapp}>WhatsApp</a> : null}
+      </div>
 
       <nav className="service-links" aria-label={locale === "ru" ? "Направления работ" : locale === "en" ? "Services" : "მომსახურებები"}>
         {services.map(([label, path]) => <Link key={path} href={locale === "ru" ? path : `/${locale}${path}`} aria-current={activePath === path ? "page" : undefined}>{label}</Link>)}

@@ -10,5 +10,24 @@ export const metadata: Metadata = {
 };
 
 export default function RootPage() {
-  return <HomePageLayout locale="ru" />;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: siteConfig.name,
+    url: siteConfig.siteUrl,
+    telephone: "+995555128231",
+    email: "ai769598@gmail.com",
+    areaServed: ["Tbilisi", "Kakheti", "Georgia"],
+    availableLanguage: ["Russian", "English", "Georgian"],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Реконструкция", url: `${siteConfig.siteUrl}/reconstruction` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Крыши", url: `${siteConfig.siteUrl}/roof` } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Летние кухни", url: `${siteConfig.siteUrl}/summer-kitchen` } }
+      ]
+    }
+  };
+
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><HomePageLayout locale="ru" /></>;
 }

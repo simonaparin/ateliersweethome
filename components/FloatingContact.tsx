@@ -13,18 +13,10 @@ export function FloatingContact() {
     ge: { action: "დაგვიკავშირდით", aria: "Atelier Sweet Home-თან დაკავშირება", href: "/ge/contacts" }
   } as const;
   const label = labels[locale];
-  const channel = contactConfig.telegram
-    ? "Telegram"
-    : contactConfig.whatsapp
-      ? "WhatsApp"
-      : contactConfig.email
-        ? "Email"
-        : "Форма";
-
   return (
-    <Link className="floating-contact" href={label.href} aria-label={label.aria}>
-      <span>{label.action}</span>
-      <small>{channel}</small>
-    </Link>
+    <div className="floating-contact" aria-label={label.aria}>
+      <Link className="floating-contact__action" href={label.href}>{label.action}</Link>
+      {contactConfig.whatsapp ? <a className="floating-contact__action" href={contactConfig.whatsapp}>WhatsApp</a> : null}
+    </div>
   );
 }
