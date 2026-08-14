@@ -62,5 +62,5 @@ export function LocalizedServiceLayout({ locale, service, hero, heroImage, page,
       <Block eyebrow={labels.start} title={page.start?.title}><ol className="steps-list" id="work-start">{start.map((item: string) => <li key={item}>{item}</li>)}</ol></Block>
       {faqBlock}{relatedBlock}{contactBlock}
     </> : null}
-  </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{labels.footer}</span></div><div className="footer-meta"><span>RU / EN / GE</span><span>© Atelier Sweet Home</span></div></footer></>;
+  </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{labels.footer}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© Atelier Sweet Home</span></div></footer></>;
 }

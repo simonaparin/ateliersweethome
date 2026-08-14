@@ -6,6 +6,7 @@ import { contactConfig } from "@/data/contacts";
 
 export function FloatingContact() {
   const pathname = usePathname();
+  if (pathname === "/reconstruction" || pathname.endsWith("/reconstruction")) return null;
   const locale = pathname.startsWith("/en") ? "en" : pathname.startsWith("/ge") ? "ge" : "ru";
   const labels = {
     ru: { action: "Связаться", aria: "Связаться с Atelier Sweet Home", href: "/contacts" },

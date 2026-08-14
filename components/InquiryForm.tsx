@@ -5,7 +5,31 @@ import type { ChangeEvent, FormEvent } from "react";
 import type { FormContent } from "@/types/content";
 
 type Locale = "ru" | "en" | "ge";
-type InquiryFormProps = { content: FormContent; locale?: Locale };
+export type ReconstructionFormCopy = {
+  ariaLabel: string;
+  heading: string;
+  messageLabel: string;
+  contactLabel: string;
+  photosLabel: string;
+  selectedFiles: string;
+  noFiles: string;
+  removeFile: string;
+  attach: string;
+  sending: string;
+  send: string;
+  responseNote: string;
+  required: string;
+  fileLimit: string;
+  error: string;
+  success: string;
+};
+
+type InquiryFormProps = {
+  content: FormContent;
+  locale?: Locale;
+  variant?: "default" | "reconstruction";
+  reconstructionCopy?: ReconstructionFormCopy;
+};
 type FormState = "idle" | "sending" | "sent" | "error";
 
 const maxFiles = 10;
@@ -16,18 +40,19 @@ const ui = {
   ge: { messageLabel: "შეტყობინება", messagePlaceholder: "მოგვწერეთ სახლის ან ამოცანის შესახებ", contactLabel: "როგორ დაგიკავშირდეთ?", contactPlaceholder: "ელფოსტა, ტელეფონი ან WhatsApp", files: "დართული ფაილები", remove: "წაშლა", attach: "დართვა", sending: "იგზავნება…", send: "გაგზავნა →", required: "დაწერეთ შეტყობინება და მიუთითეთ, როგორ დაგიკავშირდეთ.", fileLimit: `შეგიძლიათ დაურთოთ მაქსიმუმ ${maxFiles} ფაილი.`, error: "შეტყობინების გაგზავნა ვერ მოხერხდა. სცადეთ თავიდან ან მოგვწერეთ WhatsApp-ზე." }
 } as const;
 
-export function InquiryForm({ content, locale = "ru" }: InquiryFormProps) {
+export function InquiryForm({ content, locale = "ru", variant = "default", reconstructionCopy }: InquiryFormProps) {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const defaultMessage = content.message ?? content.text;
+  const defaultMessage = variant === "reconstruction" ? "" : content.message ?? content.text;
   const copy = ui[locale];
+  const reconstruction = variant === "reconstruction" ? reconstructionCopy : undefined;
 
   function updateFiles(event: ChangeEvent<HTMLInputElement>) {
     const next = Array.from(event.target.files ?? []);
     setFiles(next.slice(0, maxFiles));
-    if (next.length > maxFiles) setError(copy.fileLimit);
+    if (next.length > maxFiles) setError(reconstruction?.fileLimit ?? copy.fileLimit);
   }
 
   function removeFile(index: number) {
@@ -47,7 +72,7 @@ export function InquiryForm({ content, locale = "ru" }: InquiryFormProps) {
     const form = event.currentTarget;
     const formData = new FormData(form);
     if (!String(formData.get("message") ?? "").trim() || !String(formData.get("contact") ?? "").trim()) {
-      setError(copy.required);
+      setError(reconstruction?.required ?? copy.required);
       setState("error");
       return;
     }
@@ -59,9 +84,65 @@ export function InquiryForm({ content, locale = "ru" }: InquiryFormProps) {
       form.reset();
       setFiles([]);
     } catch {
-      setError(copy.error);
+      setError(reconstruction?.error ?? copy.error);
       setState("error");
     }
+  }
+
+  if (reconstruction) {
+    const selectedFiles = reconstruction.selectedFiles.replace("{count}", String(files.length));
+    return (
+      <form className="inquiry-form reconstruction-inquiry-form" id="contact-form-form" aria-label={reconstruction.ariaLabel} onSubmit={handleSubmit}>
+        <input className="inquiry-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+        <input type="hidden" name="pageTitle" value={content.title} />
+        <input type="hidden" name="pageUrl" value={typeof window === "undefined" ? "" : window.location.href} />
+        <h3 className="form-title">{reconstruction.heading}</h3>
+        <label className="reconstruction-form-field" htmlFor="reconstruction-project">
+          <span>{reconstruction.messageLabel}</span>
+          <textarea id="reconstruction-project" name="message" defaultValue="" required />
+        </label>
+        <label className="reconstruction-form-field" htmlFor="reconstruction-contact">
+          <span>{reconstruction.contactLabel}</span>
+          <input id="reconstruction-contact" name="contact" autoComplete="tel" required />
+        </label>
+        <div className="reconstruction-form-field reconstruction-photo-field">
+          <span id="reconstruction-photos-label">{reconstruction.photosLabel}</span>
+          <label className="inquiry-attach" htmlFor="reconstruction-photos">
+            <span aria-hidden="true">📎</span><span>{reconstruction.attach}</span>
+          </label>
+          <input
+            ref={inputRef}
+            id="reconstruction-photos"
+            name="attachments"
+            type="file"
+            multiple
+            accept="image/*"
+            aria-labelledby="reconstruction-photos-label"
+            aria-describedby="reconstruction-file-selection"
+            onChange={updateFiles}
+          />
+          <small id="reconstruction-file-selection" className="file-selection" role="status" aria-live="polite">
+            {files.length > 0 ? selectedFiles : reconstruction.noFiles}
+          </small>
+        </div>
+        {files.length > 0 ? (
+          <ul className="inquiry-files" aria-label={reconstruction.photosLabel}>
+            {files.map((file, index) => (
+              <li key={`${file.name}-${file.lastModified}`}>
+                <span>{file.name}</span>
+                <button type="button" onClick={() => removeFile(index)} aria-label={reconstruction.removeFile.replace("{filename}", file.name)}>×</button>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <div className="form-actions">
+          <button className="inquiry-send" type="submit" disabled={state === "sending"}>{state === "sending" ? reconstruction.sending : reconstruction.send}</button>
+          <p className="response-time">{reconstruction.responseNote}</p>
+          {state === "sent" ? <p className="form-status" role="status" aria-live="polite">{reconstruction.success}</p> : null}
+          {state === "error" && error ? <p className="form-status error" role="alert">{error}</p> : null}
+        </div>
+      </form>
+    );
   }
 
   return (

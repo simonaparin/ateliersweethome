@@ -239,7 +239,7 @@ export default function RoofPage() {
           <span>{content.footer.regions}</span>
         </div>
         <div className="footer-meta">
-          <span>RU / EN / GE</span>
+          <span>RU / EN / KA</span>
           <span>{content.footer.copyright}</span>
         </div>
       </footer>

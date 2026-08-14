@@ -6,12 +6,14 @@ import { ContactLinks } from "@/components/ContactLinks";
 import { Header } from "@/components/Header";
 import { InquiryForm } from "@/components/InquiryForm";
 import { LocalizedServiceLayout } from "@/components/LocalizedServiceLayout";
+import { ReconstructionV8Page } from "@/components/ReconstructionV8Page";
 import { ProfessionalApproach } from "@/components/ProfessionalApproach";
 import { RemoteCollaboration, RemoteKitchenCase } from "@/components/RemoteCollaboration";
 import { contactConfig } from "@/data/contacts";
 import { professionalApproach } from "@/data/professionalApproach";
 import { remoteCollaboration, remoteKitchenCase } from "@/data/remoteCollaboration";
 import { siteConfig } from "@/data/site";
+import { reconstructionV8 } from "@/content/reconstruction-v8";
 import enReconstruction from "@/content/en/reconstruction.json";
 import geReconstruction from "@/content/ka/reconstruction.json";
 import enRoof from "@/content/en/roof.json";
@@ -70,6 +72,31 @@ export function generateStaticParams() { return ["en", "ge"].flatMap((locale) =>
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale; service: Service }> }): Promise<Metadata> {
   const { locale, service } = await params;
+  if (String(service) === "reconstruction") {
+    const copy = reconstructionV8[locale];
+    return {
+      title: copy.seo.title,
+      description: copy.seo.description,
+      alternates: {
+        canonical: copy.route,
+        languages: { ru: "/reconstruction", en: "/en/reconstruction", ka: "/ge/reconstruction" }
+      },
+      openGraph: {
+        title: copy.seo.ogTitle,
+        description: copy.seo.ogDescription,
+        url: copy.route,
+        siteName: siteConfig.name,
+        locale: locale === "en" ? "en_GE" : "ka_GE",
+        type: "website",
+        images: [{
+          url: "/images/reconstruction/hero/house-t-restored-clean.png",
+          width: 1320,
+          height: 980,
+          alt: copy.hero.images[0].alt
+        }]
+      }
+    };
+  }
   const page: any = pages[locale]?.[service];
   if (!page) return {};
   const title = page.seo?.title ?? page.title;
@@ -94,6 +121,9 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
   const { locale, service } = await params;
   const page: any = pages[locale]?.[service];
   if (!page) notFound();
+  if (String(service) === "reconstruction") {
+    return <ReconstructionV8Page copy={reconstructionV8[locale]} />;
+  }
   const t = ui[locale];
   const completeBase: any = (locale === "en" ? enFull : geFull)[service];
   const complete: any = locale === "ge" && service === "reconstruction" ? { ...completeBase, ...reconstructionAdditions } : completeBase;
@@ -187,5 +217,5 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
       <Section eyebrow="FAQ" title={page.faq?.title ?? t.faq}>{faq.length ? <div className="faq-list">{faq.map((item: any) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div> : null}</Section>
       <Section eyebrow={t.related} title={t.related} text={t.relatedText}><div className="direction-list">{related.map(([label, href]) => <a className="direction-row" href={`/${locale}/${href}`} key={href}><span>{label}</span></a>)}</div></Section>
       <section className="section contact-section"><div className="contact-copy"><p className="eyebrow">{t.contact}</p><h2>{form.title}</h2><p>{form.text}</p><ContactLinks contacts={contactConfig} /></div><InquiryForm content={formContent} locale={locale} /></section>
-    </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{t.footer}</span></div><div className="footer-meta"><span>RU / EN / GE</span><span>© Atelier Sweet Home</span></div></footer></>;
+    </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{t.footer}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© Atelier Sweet Home</span></div></footer></>;
 }

@@ -173,7 +173,7 @@ export default function ContactsPage() {
           <span>Тбилиси · Кахетия · Грузия</span>
         </div>
         <div className="footer-meta">
-          <span>RU / EN / GE</span>
+          <span>RU / EN / KA</span>
           <span>© 2026 Atelier Sweet Home</span>
         </div>
       </footer>

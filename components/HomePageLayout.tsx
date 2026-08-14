@@ -81,6 +81,6 @@ export function HomePageLayout({ locale }: { locale: Locale }) {
       <section className="section home-also"><div className="section-heading"><p className="eyebrow">{c.alsoEyebrow}</p><h2>{c.alsoTitle}</h2></div><div><p>{c.alsoIntro}</p><p className="home-emphasis">{c.alsoList}</p><div className="hero-actions"><Link className="primary-button" href={serviceHref("/roof")}>{c.roofAction}</Link><Link className="secondary-link" href={serviceHref("/summer-kitchen")}>{c.kitchenAction}</Link><a className="secondary-link" href="#contact-form">{c.taskAction}</a></div></div></section>
       <section className="section home-final" id="contact-form"><div><p className="eyebrow">{c.finalEyebrow}</p><h2>{c.finalTitle}</h2><p>{c.finalText}</p><a className="home-whatsapp" href={contactConfig.whatsapp}>WhatsApp</a></div><MessageComposer copy={c.composer} pageTitle={c.finalTitle} /></section>
     </main>
-    <footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{c.footerLine}</span><span>{c.area}</span></div><div className="footer-meta"><span>RU / EN / GE</span><span>© 2026 Atelier Sweet Home</span></div></footer>
+    <footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{c.footerLine}</span><span>{c.area}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© 2026 Atelier Sweet Home</span></div></footer>
   </>;
 }

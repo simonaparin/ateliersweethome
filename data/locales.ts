@@ -5,7 +5,7 @@ export type SiteLocale = (typeof supportedLocales)[number];
 export const localeLabels: Record<SiteLocale, string> = {
   ru: "RU",
   en: "EN",
-  ge: "GE"
+  ge: "KA"
 };
 
 export function localePrefix(locale: SiteLocale) {
