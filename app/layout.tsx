@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { headers } from "next/headers";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@/components/Analytics";
 import { FloatingContact } from "@/components/FloatingContact";
 import { siteConfig } from "@/data/site";
 
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       <body>
         {children}
         <FloatingContact />
+        <Analytics />
       </body>
     </html>
   );

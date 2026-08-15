@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
 import type { FormContent } from "@/types/content";
+import { trackEvent } from "@/components/Analytics";
 
 type Locale = "ru" | "en" | "ge";
 export type ReconstructionFormCopy = {
@@ -130,6 +131,10 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
       const response = await fetch("/api/inquiries", { method: "POST", body: formData });
       if (!response.ok) throw new Error("Request failed");
       setState("sent");
+      trackEvent("generate_lead", {
+        form_type: homeInspection ? "home_inspection" : reconstruction ? "reconstruction" : "general",
+        page_path: window.location.pathname
+      });
       form.reset();
       setFiles([]);
     } catch {
