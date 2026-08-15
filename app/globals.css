@@ -18,6 +18,608 @@
   --max: 1220px;
 }
 
+/* Home Inspection v9: approved RU preview structure shared exactly by EN and KA. */
+.home-inspection-v9 {
+  overflow: clip;
+}
+
+.site-header--home-inspection {
+  gap: 12px;
+  padding-inline: clamp(16px, 2vw, 28px);
+}
+
+.site-header--home-inspection .brand {
+  font-size: 30px;
+}
+
+.site-header--home-inspection .service-links {
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+
+.site-header--home-inspection .write-link {
+  font-size: 12.5px;
+}
+
+.home-inspection-v9 h1,
+.home-inspection-v9 h2,
+.home-inspection-v9 h3,
+.home-inspection-v9 p,
+.home-inspection-v9 span,
+.home-inspection-v9 summary {
+  overflow-wrap: break-word;
+}
+
+.home-inspection-hero .hero-copy {
+  grid-template-rows: 1fr auto;
+  min-width: 0;
+}
+
+.home-inspection-hero h1 {
+  max-width: 100%;
+  font-size: clamp(48px, 5vw, 68px);
+}
+
+.home-inspection-hero-intro {
+  max-width: 810px;
+  margin: 22px 0 0;
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+.home-inspection-hero-ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.home-inspection-hero-ledger > div {
+  padding: 16px;
+  background: var(--plaster);
+}
+
+.home-inspection-hero-ledger strong,
+.home-inspection-hero-ledger span {
+  display: block;
+}
+
+.home-inspection-hero-ledger strong {
+  color: var(--brick);
+  font-family: var(--font-display), serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.home-inspection-hero-ledger span {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.home-inspection-hero-collage {
+  display: grid;
+  grid-template-columns: 1.16fr 0.84fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  min-height: calc(100vh - 130px);
+  background: #171717;
+}
+
+.home-inspection-photo {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #171717;
+}
+
+.home-inspection-photo--main {
+  grid-row: 1 / 3;
+}
+
+.home-inspection-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-inspection-photo figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 24px);
+  padding: 6px 8px;
+  background: rgba(21, 20, 18, 0.72);
+  color: #fff8ee;
+  font-size: 12px;
+  line-height: 1.25;
+}
+
+.home-inspection-body-copy {
+  max-width: 780px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.home-inspection-body-copy p {
+  margin: 0;
+}
+
+.home-inspection-body-copy p + p {
+  margin-top: 18px;
+}
+
+.home-inspection-v9 .home-inspection-plaster {
+  background: var(--plaster);
+}
+
+.home-inspection-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.76fr) minmax(320px, 1fr);
+  gap: clamp(28px, 5vw, 68px);
+  align-items: start;
+}
+
+.home-inspection-split .section-heading {
+  margin-bottom: 0;
+}
+
+.home-inspection-cards,
+.home-inspection-check-grid,
+.home-inspection-steps {
+  display: grid;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.home-inspection-cards {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-inspection-cards article,
+.home-inspection-check-grid article,
+.home-inspection-steps li {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 32px);
+  background: var(--paper);
+}
+
+.home-inspection-cards p,
+.home-inspection-check-grid p,
+.home-inspection-steps p {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.home-inspection-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 4px;
+  background: #171717;
+}
+
+.home-inspection-photo--wide {
+  grid-column: 1 / 3;
+}
+
+.home-inspection-checklist {
+  scroll-margin-top: 92px;
+}
+
+.home-inspection-check-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-inspection-check-grid article {
+  min-height: 248px;
+  padding: 28px;
+}
+
+.home-inspection-number {
+  display: block;
+  margin-bottom: 28px;
+  color: var(--brick);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-inspection-v9 .home-inspection-result {
+  background: radial-gradient(circle at 84% 12%, rgba(159, 63, 47, 0.24), transparent 34rem), linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px), var(--dark);
+  background-size: auto, 42px 42px, 42px 42px, auto;
+  color: var(--light-text);
+  border-top-color: var(--line-dark);
+}
+
+.home-inspection-result .home-inspection-body-copy {
+  color: #d9ccbe;
+}
+
+.home-inspection-result .primary-button {
+  border-color: var(--light-text);
+  background: var(--light-text);
+  color: var(--dark);
+}
+
+.home-inspection-result-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line-dark);
+}
+
+.home-inspection-result-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.home-inspection-result-note {
+  margin: 24px 0 0;
+  padding: 20px;
+  border-left: 3px solid #d29a84;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.home-inspection-section-cta {
+  margin-top: 28px;
+}
+
+.home-inspection-remote,
+.home-inspection-character {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: end;
+}
+
+.home-inspection-remote .section-heading,
+.home-inspection-character .section-heading {
+  margin: 0;
+}
+
+.home-inspection-steps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: home-inspection-step;
+}
+
+.home-inspection-steps li {
+  min-height: 260px;
+  counter-increment: home-inspection-step;
+}
+
+.home-inspection-steps li::before {
+  content: "0" counter(home-inspection-step);
+  display: block;
+  margin-bottom: 30px;
+  color: var(--brick);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.home-inspection-steps h3 {
+  font-size: 28px;
+}
+
+.home-inspection-price {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.68fr) 1fr;
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.home-inspection-price > * {
+  padding: clamp(26px, 4vw, 42px);
+  background: var(--plaster);
+}
+
+.home-inspection-price-big strong,
+.home-inspection-price-big span {
+  display: block;
+}
+
+.home-inspection-price-big strong {
+  color: var(--wine);
+  font-family: var(--font-display), serif;
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.home-inspection-price-big span {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.home-inspection-links {
+  display: grid;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.home-inspection-links a {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  font-weight: 700;
+}
+
+.home-inspection-links a::after {
+  content: "→";
+  color: var(--brick);
+  font-size: 23px;
+}
+
+.home-inspection-character {
+  grid-template-columns: minmax(0, 0.8fr) 1fr;
+  align-items: center;
+}
+
+.home-inspection-character-photo {
+  min-height: 560px;
+}
+
+.home-inspection-v9 .home-inspection-contact {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1fr);
+  gap: clamp(28px, 5vw, 68px);
+  background: var(--dark-soft);
+  color: var(--light-text);
+  border-top-color: var(--line-dark);
+  scroll-margin-top: 76px;
+}
+
+.home-inspection-contact .contact-copy > .home-inspection-body-copy {
+  margin-top: 22px;
+  color: rgba(241, 236, 227, 0.78);
+}
+
+.home-inspection-direct-contacts {
+  display: grid;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.home-inspection-direct-contacts a {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 16px;
+  border: 1px solid rgba(241, 236, 227, 0.3);
+}
+
+.home-inspection-direct-contacts span {
+  color: rgba(241, 236, 227, 0.66);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.home-inspection-direct-contacts strong {
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+
+.home-inspection-inquiry-form {
+  align-content: start;
+  gap: 0;
+  overflow: hidden;
+  padding: 24px;
+  border-color: rgba(241, 236, 227, 0.34);
+  background: rgba(241, 236, 227, 0.04);
+}
+
+.home-inspection-inquiry-form .form-title {
+  margin-bottom: 18px;
+}
+
+.home-inspection-form-field,
+.home-inspection-form-options {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid rgba(241, 236, 227, 0.24);
+}
+
+.home-inspection-form-field > span:first-child,
+.home-inspection-form-options legend {
+  color: rgba(241, 236, 227, 0.88);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.home-inspection-inquiry-form textarea,
+.home-inspection-inquiry-form input[type="text"] {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px;
+  border: 1px solid rgba(241, 236, 227, 0.28);
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--light-text);
+}
+
+.home-inspection-inquiry-form textarea {
+  min-height: 105px;
+  resize: vertical;
+}
+
+.home-inspection-radio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.home-inspection-radio-grid label {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.home-inspection-radio-grid input {
+  margin-top: 5px;
+}
+
+.home-inspection-photo-field {
+  position: relative;
+}
+
+.home-inspection-photo-field .inquiry-attach {
+  width: fit-content;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--light-text);
+}
+
+.home-inspection-photo-field > input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.home-inspection-inquiry-form .form-actions {
+  display: grid;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.home-inspection-inquiry-form .inquiry-send {
+  min-height: 48px;
+}
+
+.home-inspection-inquiry-form .response-time,
+.home-inspection-inquiry-form .file-selection,
+.home-inspection-inquiry-form .form-status {
+  margin: 0;
+}
+
+.home-inspection-inquiry-form .response-time,
+.home-inspection-inquiry-form .file-selection {
+  color: rgba(241, 236, 227, 0.72);
+  font-size: 14px;
+}
+
+@media (max-width: 980px) {
+  .home-inspection-split,
+  .home-inspection-remote,
+  .home-inspection-character,
+  .home-inspection-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .home-inspection-hero-collage {
+    min-height: 650px;
+  }
+
+  .home-inspection-check-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-inspection-price {
+    grid-template-columns: 1fr;
+  }
+
+  .home-inspection-character-photo {
+    min-height: 480px;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header--home-inspection .header-contact-links {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .site-header--home-inspection .write-link {
+    grid-column: 1 / -1;
+  }
+
+  .home-inspection-hero h1 {
+    font-size: 37px;
+    overflow-wrap: anywhere;
+  }
+
+  .home-inspection-hero-intro {
+    font-size: 22px;
+  }
+
+  .home-inspection-hero-ledger,
+  .home-inspection-cards,
+  .home-inspection-check-grid,
+  .home-inspection-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .home-inspection-hero-collage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 410px 260px;
+    min-height: auto;
+  }
+
+  .home-inspection-photo--main {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
+
+  .home-inspection-gallery {
+    grid-template-rows: 250px 230px;
+  }
+
+  .home-inspection-check-grid article,
+  .home-inspection-steps li {
+    min-height: auto;
+  }
+
+  .home-inspection-character-photo {
+    min-height: 420px;
+  }
+
+  .home-inspection-contact {
+    scroll-margin-top: 260px;
+  }
+
+  .home-inspection-direct-contacts a {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .home-inspection-inquiry-form {
+    padding: 20px 16px;
+  }
+
+  .home-inspection-radio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-inspection-inquiry-form .inquiry-send {
+    width: 100%;
+  }
+
+  .home-inspection-v9 .home-inspection-checklist,
+  .home-inspection-v9 .home-inspection-contact {
+    scroll-margin-top: 260px;
+  }
+}
+
 /* Homepage uses the same approved reconstruction collages without local
    layout overrides, so the photo placement stays identical. */
 .home-page .home-station {
@@ -100,20 +702,21 @@ img {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "brand actions" "nav nav";
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  min-height: 62px;
-  padding: 12px clamp(16px, 4vw, 48px);
+  gap: 0 18px;
+  padding: 15px clamp(16px, 4vw, 48px) 0;
   border-bottom: 1px solid var(--line);
   background: rgba(249, 248, 244, 0.93);
   backdrop-filter: blur(12px);
 }
 
 .brand {
+  grid-area: brand;
   font-family: var(--font-display), serif;
-  font-size: 34px;
+  font-size: 32px;
   line-height: 1;
   font-weight: 500;
 }
@@ -127,8 +730,6 @@ img {
 }
 
 .header-actions,
-.language-switcher,
-.service-links,
 .contact-links,
 .hero-actions,
 .footer-meta {
@@ -138,16 +739,39 @@ img {
   flex-wrap: wrap;
 }
 
+.header-actions {
+  grid-area: actions;
+  justify-self: end;
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+
 .service-links {
-  gap: 18px;
-  margin-left: auto;
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+  padding: 12px 0 13px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.service-links::-webkit-scrollbar {
+  display: none;
 }
 
 .service-links a {
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 700;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 600;
   white-space: nowrap;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+.service-links a:hover {
+  border-bottom-color: var(--line-strong);
 }
 
 .service-links a[aria-current="page"] {
@@ -155,36 +779,86 @@ img {
 }
 
 .language-switcher {
-  gap: 0;
-  border: 1px solid var(--line);
+  position: relative;
+  flex: 0 0 auto;
 }
 
-.language-switcher a,
-.language-switcher span {
-  min-width: 42px;
-  min-height: 34px;
+.language-switcher__button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-right: 1px solid var(--line);
+  gap: 5px;
+  min-height: 34px;
+  padding: 6px 2px;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.language-switcher__button:hover {
+  color: var(--ink);
+}
+
+.language-switcher__button svg {
+  width: 9px;
+  height: 9px;
+  transition: transform 0.15s ease;
+}
+
+.language-switcher__button[aria-expanded="true"] {
+  color: var(--ink);
+}
+
+.language-switcher__button[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.language-switcher__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 74px;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  z-index: 40;
+}
+
+.language-switcher__menu[hidden] {
+  display: none;
+}
+
+.language-switcher__menu a {
+  display: block;
+  padding: 8px 12px;
   color: var(--muted);
   font-size: 13px;
   font-weight: 700;
 }
 
-.language-switcher a:last-child,
-.language-switcher span:last-child {
-  border-right: 0;
+.language-switcher__menu a:hover {
+  background: var(--plaster);
+  color: var(--ink);
 }
 
-.language-switcher a[aria-current="page"] {
-  background: var(--ink);
-  color: var(--paper);
+.language-switcher__menu a[aria-current="page"] {
+  background: var(--plaster);
+  color: var(--ink);
 }
 
-.language-switcher span[aria-disabled="true"] {
-  opacity: 0.48;
-  cursor: default;
+.header-phone {
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.header-phone:hover {
+  color: var(--brick);
 }
 
 .write-link,
@@ -1232,46 +1906,36 @@ h3 {
   border: 1px solid rgba(241, 236, 227, 0.3);
 }
 
-.floating-contact {
+.whatsapp-fab {
   position: fixed;
   right: 24px;
-  top: 88px;
-  bottom: auto;
+  bottom: 24px;
   z-index: 30;
-  min-width: 104px;
-  min-height: 44px;
-  display: grid;
-  align-content: center;
-  gap: 1px;
-  padding: 8px 11px;
-  border: 1px solid rgba(241, 236, 227, 0.34);
-  background: rgba(21, 20, 18, 0.92);
-  color: var(--light-text);
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(10px);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+  transition: transform 0.16s ease;
 }
 
-.floating-contact span {
-  font-size: 12px;
-  font-weight: 800;
+.whatsapp-fab svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
 }
 
-.floating-contact small {
-  color: rgba(241, 236, 227, 0.68);
-  font-size: 10px;
-  font-weight: 700;
+.whatsapp-fab:hover {
+  transform: scale(1.06);
 }
 
-.floating-contact__action {
-  display: block;
-  color: inherit;
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.floating-contact__action + .floating-contact__action {
-  padding-top: 6px;
-  border-top: 1px solid rgba(241, 236, 227, 0.24);
+.whatsapp-fab:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
 }
 
 .contacts-hero {
@@ -1780,31 +2444,28 @@ h3 {
     font-size: 31px;
   }
 
-  .site-header { align-items: stretch; flex-direction: column; gap: 10px; }
+  .site-header { padding: 10px 16px 0; gap: 0 12px; }
 
-  .header-topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .header-topline { display: contents; }
 
   .header-whatsapp { min-height: 36px; display: inline-flex; align-items: center; padding: 0 10px; border: 1px solid var(--ink); font-size: 13px; font-weight: 800; white-space: nowrap; }
 
   .service-links {
-    width: 100%;
-    order: 3;
-    gap: 14px;
-    overflow-x: auto;
-    padding-bottom: 2px;
+    gap: 16px;
+    padding: 9px 0 10px;
+  }
+
+  .service-links a {
+    font-size: 13px;
   }
 
   .header-actions {
-    width: 100%;
-    justify-content: space-between;
+    gap: 10px;
   }
 
-  .header-actions .write-link { display: none; }
+  .header-actions .write-link { display: inline-flex; }
 
-  .language-switcher a,
-  .language-switcher span {
-    min-width: 38px;
-  }
+  .header-phone { display: none; }
 
   .hero-ledger div {
     grid-template-columns: 1fr;
@@ -1968,15 +2629,18 @@ h3 {
     content: "გახსნა";
   }
 
-  .floating-contact {
-    display: none;
+  .whatsapp-fab {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
   }
 }
 
 /* Reconstruction v8: approved RU layout shared exactly by EN and KA. */
 .header-actions {
   flex-wrap: nowrap;
-  gap: 8px;
+  gap: 16px;
 }
 
 .header-contact-links {
@@ -2420,13 +3084,27 @@ h3 {
     display: flex;
   }
 
-  .header-actions {
-    align-items: stretch;
-    flex-direction: column;
+  .site-header {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "brand" "actions" "nav";
+    gap: 0;
   }
 
-  .language-switcher {
-    width: max-content;
+  .brand {
+    white-space: nowrap;
+    font-size: 25px;
+  }
+
+  .header-actions {
+    justify-self: start;
+    align-items: center;
+    flex-direction: row;
+    gap: 9px;
+    padding-top: 9px;
+  }
+
+  .service-links {
+    padding: 10px 0;
   }
 
   .header-contact-links {

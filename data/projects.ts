@@ -13,7 +13,7 @@ export type ProjectCase = {
 
 export const reconstructionCases: ProjectCase[] = [
   {
-    title: "Дом Т: восстановление для круглогодичной жизни",
+    title: "Дом в Кахетии: восстановление для круглогодичной жизни",
     location: "Грузия · частный дом",
     situation:
       "Старый дом был куплен в повреждённом состоянии. Задача состояла в том, чтобы сохранить его характер и подготовить к нормальной жизни круглый год.",
@@ -52,7 +52,7 @@ export const reconstructionCases: ProjectCase[] = [
 
 export const localizedReconstructionCases: Record<"en" | "ge", ProjectCase[]> = {
   en: [{
-    title: "House T: restoration for year-round living",
+    title: "A house in Kakheti: restoration for year-round living",
     location: "Georgia · private home",
     situation: "An old private house was bought in damaged condition and restored for comfortable year-round living.",
     workCompleted: ["veranda and new openings", "heating, water supply and electrical work", "two bathrooms", "interior finishing and arranging the home for living"],
@@ -65,7 +65,7 @@ export const localizedReconstructionCases: Record<"en" | "ge", ProjectCase[]> = 
     ]
   }],
   ge: [{
-    title: "სახლი T: აღდგენა მთელი წლის განმავლობაში საცხოვრებლად",
+    title: "სახლი კახეთში: აღდგენა მთელი წლის განმავლობაში საცხოვრებლად",
     location: "საქართველო · კერძო სახლი",
     situation: "ძველი კერძო სახლი შეძენილი იყო დაზიანებულ მდგომარეობაში და აღდგა მთელი წლის განმავლობაში კომფორტული საცხოვრებლისთვის.",
     workCompleted: ["ვერანდა და ახალი ღიობები", "გათბობა, წყალმომარაგება და ელექტროობა", "ორი სველი წერტილი", "შიდა მოპირკეთება და სახლის საცხოვრებლად მოწყობა"],

@@ -16,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1
     },
     {
+      url: `${siteConfig.siteUrl}/home-inspection`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9
+    },
+    {
       url: `${siteConfig.siteUrl}/summer-kitchen`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -33,11 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7
     },
-    ...["en", "ge"].flatMap((locale) => ["", "/reconstruction", "/roof", "/summer-kitchen", "/contacts"].map((path) => ({
+    ...["en", "ge"].flatMap((locale) => ["", "/reconstruction", "/home-inspection", "/roof", "/summer-kitchen", "/contacts"].map((path) => ({
       url: `${siteConfig.siteUrl}/${locale}${path}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
-      priority: path === "/reconstruction" ? 0.9 : 0.7
+      priority: path === "/reconstruction" || path === "/home-inspection" ? 0.9 : 0.7
     })))
   ];
 }

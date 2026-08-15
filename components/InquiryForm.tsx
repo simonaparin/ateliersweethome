@@ -24,11 +24,36 @@ export type ReconstructionFormCopy = {
   success: string;
 };
 
+export type HomeInspectionFormCopy = {
+  ariaLabel: string;
+  heading: string;
+  locationLabel: string;
+  areaLabel: string;
+  purposeLegend: string;
+  purposes: string[];
+  visitLabel: string;
+  concernLabel: string;
+  contactLabel: string;
+  photosLabel: string;
+  selectedFiles: string;
+  noFiles: string;
+  removeFile: string;
+  attach: string;
+  sending: string;
+  send: string;
+  responseNote: string;
+  required: string;
+  fileLimit: string;
+  error: string;
+  success: string;
+};
+
 type InquiryFormProps = {
   content: FormContent;
   locale?: Locale;
-  variant?: "default" | "reconstruction";
+  variant?: "default" | "reconstruction" | "homeInspection";
   reconstructionCopy?: ReconstructionFormCopy;
+  homeInspectionCopy?: HomeInspectionFormCopy;
 };
 type FormState = "idle" | "sending" | "sent" | "error";
 
@@ -40,7 +65,7 @@ const ui = {
   ge: { messageLabel: "შეტყობინება", messagePlaceholder: "მოგვწერეთ სახლის ან ამოცანის შესახებ", contactLabel: "როგორ დაგიკავშირდეთ?", contactPlaceholder: "ელფოსტა, ტელეფონი ან WhatsApp", files: "დართული ფაილები", remove: "წაშლა", attach: "დართვა", sending: "იგზავნება…", send: "გაგზავნა →", required: "დაწერეთ შეტყობინება და მიუთითეთ, როგორ დაგიკავშირდეთ.", fileLimit: `შეგიძლიათ დაურთოთ მაქსიმუმ ${maxFiles} ფაილი.`, error: "შეტყობინების გაგზავნა ვერ მოხერხდა. სცადეთ თავიდან ან მოგვწერეთ WhatsApp-ზე." }
 } as const;
 
-export function InquiryForm({ content, locale = "ru", variant = "default", reconstructionCopy }: InquiryFormProps) {
+export function InquiryForm({ content, locale = "ru", variant = "default", reconstructionCopy, homeInspectionCopy }: InquiryFormProps) {
   const [state, setState] = useState<FormState>("idle");
   const [error, setError] = useState("");
   const [files, setFiles] = useState<File[]>([]);
@@ -48,11 +73,15 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
   const defaultMessage = variant === "reconstruction" ? "" : content.message ?? content.text;
   const copy = ui[locale];
   const reconstruction = variant === "reconstruction" ? reconstructionCopy : undefined;
+  const homeInspection = variant === "homeInspection" ? homeInspectionCopy : undefined;
 
   function updateFiles(event: ChangeEvent<HTMLInputElement>) {
     const next = Array.from(event.target.files ?? []);
     setFiles(next.slice(0, maxFiles));
-    if (next.length > maxFiles) setError(reconstruction?.fileLimit ?? copy.fileLimit);
+    if (next.length > maxFiles) {
+      setError(homeInspection?.fileLimit ?? reconstruction?.fileLimit ?? copy.fileLimit);
+      setState("error");
+    }
   }
 
   function removeFile(index: number) {
@@ -71,6 +100,26 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
     setError("");
     const form = event.currentTarget;
     const formData = new FormData(form);
+    if (homeInspection) {
+      const location = String(formData.get("inspectionLocation") ?? "").trim();
+      const area = String(formData.get("inspectionArea") ?? "").trim();
+      const purpose = String(formData.get("inspectionPurpose") ?? "").trim();
+      const visit = String(formData.get("inspectionVisit") ?? "").trim();
+      const concern = String(formData.get("inspectionConcern") ?? "").trim();
+      const contact = String(formData.get("contact") ?? "").trim();
+      if (!location || !purpose || !contact) {
+        setError(homeInspection.required);
+        setState("error");
+        return;
+      }
+      formData.set("message", [
+        `${homeInspection.locationLabel}: ${location}`,
+        area ? `${homeInspection.areaLabel}: ${area}` : "",
+        `${homeInspection.purposeLegend}: ${purpose}`,
+        visit ? `${homeInspection.visitLabel}: ${visit}` : "",
+        concern ? `${homeInspection.concernLabel}: ${concern}` : ""
+      ].filter(Boolean).join("\n"));
+    }
     if (!String(formData.get("message") ?? "").trim() || !String(formData.get("contact") ?? "").trim()) {
       setError(reconstruction?.required ?? copy.required);
       setState("error");
@@ -84,9 +133,40 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
       form.reset();
       setFiles([]);
     } catch {
-      setError(reconstruction?.error ?? copy.error);
+      setError(homeInspection?.error ?? reconstruction?.error ?? copy.error);
       setState("error");
     }
+  }
+
+  if (homeInspection) {
+    const selectedFiles = homeInspection.selectedFiles.replace("{count}", String(files.length));
+    return (
+      <form className="inquiry-form home-inspection-inquiry-form" id="contact-form-form" aria-label={homeInspection.ariaLabel} onSubmit={handleSubmit} noValidate>
+        <input className="inquiry-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+        <input type="hidden" name="pageTitle" value={content.title} />
+        <input type="hidden" name="pageUrl" value={typeof window === "undefined" ? "" : window.location.href} />
+        <h3 className="form-title">{homeInspection.heading}</h3>
+        <label className="home-inspection-form-field" htmlFor="inspection-location"><span>{homeInspection.locationLabel}</span><input id="inspection-location" name="inspectionLocation" type="text" required /></label>
+        <label className="home-inspection-form-field" htmlFor="inspection-area"><span>{homeInspection.areaLabel}</span><input id="inspection-area" name="inspectionArea" type="text" /></label>
+        <fieldset className="home-inspection-form-options"><legend>{homeInspection.purposeLegend}</legend><div className="home-inspection-radio-grid">{homeInspection.purposes.map((purpose) => <label key={purpose}><input type="radio" name="inspectionPurpose" value={purpose} required /> {purpose}</label>)}</div></fieldset>
+        <label className="home-inspection-form-field" htmlFor="inspection-visit"><span>{homeInspection.visitLabel}</span><input id="inspection-visit" name="inspectionVisit" type="text" /></label>
+        <label className="home-inspection-form-field" htmlFor="inspection-concern"><span>{homeInspection.concernLabel}</span><textarea id="inspection-concern" name="inspectionConcern" /></label>
+        <label className="home-inspection-form-field" htmlFor="inspection-contact"><span>{homeInspection.contactLabel}</span><input id="inspection-contact" name="contact" type="text" autoComplete="tel" required /></label>
+        <div className="home-inspection-form-field home-inspection-photo-field">
+          <span id="inspection-photos-label">{homeInspection.photosLabel}</span>
+          <label className="inquiry-attach" htmlFor="inspection-photos"><span aria-hidden="true">📎</span><span>{homeInspection.attach}</span></label>
+          <input ref={inputRef} id="inspection-photos" name="attachments" type="file" multiple accept="image/*" aria-labelledby="inspection-photos-label" aria-describedby="inspection-file-selection" onChange={updateFiles} />
+          <small id="inspection-file-selection" className="file-selection" role="status" aria-live="polite">{files.length ? selectedFiles : homeInspection.noFiles}</small>
+        </div>
+        {files.length ? <ul className="inquiry-files" aria-label={homeInspection.photosLabel}>{files.map((file, index) => <li key={`${file.name}-${file.lastModified}`}><span>{file.name}</span><button type="button" onClick={() => removeFile(index)} aria-label={homeInspection.removeFile.replace("{filename}", file.name)}>×</button></li>)}</ul> : null}
+        <div className="form-actions">
+          <button className="inquiry-send" type="submit" disabled={state === "sending"}>{state === "sending" ? homeInspection.sending : homeInspection.send}</button>
+          <p className="response-time">{homeInspection.responseNote}</p>
+          {state === "sent" ? <p className="form-status" role="status" aria-live="polite">{homeInspection.success}</p> : null}
+          {state === "error" && error ? <p className="form-status error" role="alert">{error}</p> : null}
+        </div>
+      </form>
+    );
   }
 
   if (reconstruction) {
