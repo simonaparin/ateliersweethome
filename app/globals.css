@@ -2226,7 +2226,6 @@ h3 {
 .home-inspection .eyebrow { color: #d29a84; }
 .home-emphasis { font-weight: 700; color: inherit !important; }
 .home-note { padding-left: 16px; border-left: 3px solid #d29a84; }
-.home-whatsapp { width: fit-content; min-height: 42px; display: inline-flex; align-items: center; margin: 0 0 12px; padding: 0 12px; border: 1px solid currentColor; font-size: 14px; font-weight: 700; }
 .message-composer { display: grid; gap: 0; border: 1px solid rgba(241,236,227,.32); background: rgba(241,236,227,.06); }
 .message-composer textarea, .message-composer__contact input { width: 100%; border: 0; border-bottom: 1px solid rgba(241,236,227,.26); padding: 16px; background: transparent; color: var(--light-text); font: inherit; line-height: 1.42; border-radius: 0; }
 .message-composer textarea { min-height: 152px; resize: vertical; }
