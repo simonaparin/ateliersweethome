@@ -6,8 +6,8 @@ import { siteConfig } from "@/data/site";
 type Locale = "en" | "ge";
 
 const metadataByLocale: Record<Locale, { title: string; description: string; locale: string }> = {
-  en: { title: "Atelier Sweet Home | Old house reconstruction in Georgia", description: "Old house reconstruction in Tbilisi, Kakheti and across Georgia: preliminary technical inspections, design, work organisation and completed homes.", locale: "en_GE" },
-  ge: { title: "Atelier Sweet Home | ძველი სახლების რეკონსტრუქცია საქართველოში", description: "ძველი სახლების რეკონსტრუქცია თბილისში, კახეთსა და საქართველოს სხვა რეგიონებში: წინასწარი ტექნიკური დათვალიერება, პროექტი, სამუშაოების ორგანიზება და დასრულებული სახლი.", locale: "ka_GE" }
+  en: { title: "Atelier Sweet Home | Working with old houses in Georgia", description: "Inspection, renovation, new roofs, outdoor kitchens and canopies for old private houses. Tbilisi, Kakheti and across Georgia.", locale: "en_GE" },
+  ge: { title: "Atelier Sweet Home | ძველი სახლები საქართველოში", description: "ტექნიკური დათვალიერება, რეკონსტრუქცია, ახალი სახურავი, საზაფხულო სამზარეულოები და ფარდულები ძველი კერძო სახლებისთვის. თბილისი, კახეთი, მთელი საქართველო.", locale: "ka_GE" }
 };
 
 export function generateStaticParams() { return [{ locale: "en" }, { locale: "ge" }]; }

@@ -3102,6 +3102,14 @@ h3 {
     padding-top: 9px;
   }
 
+  /* On narrow screens .header-actions is left-aligned, so the language menu
+     must open to the right of the button. With the default right: 0 it is
+     drawn leftwards and runs off the left edge of the screen. */
+  .language-switcher__menu {
+    left: 0;
+    right: auto;
+  }
+
   .service-links {
     padding: 10px 0;
   }
