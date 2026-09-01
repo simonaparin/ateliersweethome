@@ -16,7 +16,7 @@ export default function RootPage() {
     name: siteConfig.name,
     url: siteConfig.siteUrl,
     telephone: "+995555128231",
-    email: "ai769598@gmail.com",
+    email: "hello@ateliersweethome.ge",
     areaServed: ["Tbilisi", "Kakheti", "Georgia"],
     availableLanguage: ["Russian", "English", "Georgian"],
     hasOfferCatalog: {

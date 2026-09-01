@@ -16,7 +16,7 @@ export function Header({ content, contacts, activePath = "/reconstruction", loca
   const contactsPath = locale === "ru" ? "/contacts" : `/${locale}/contacts`;
   const enquiryPath = activePath === "/reconstruction" || activePath === "/home-inspection" ? "#contact-form" : contactsPath;
   const formattedPhone = "+995 555 12 82 31";
-  const homeSchema = locale !== "ru" && activePath === "/" ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}`, telephone: "+995555128231", email: "ai769598@gmail.com", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian" } : null;
+  const homeSchema = locale !== "ru" && activePath === "/" ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}`, telephone: "+995555128231", email: "hello@ateliersweethome.ge", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian" } : null;
   const services = locale === "ru"
     ? [["Реконструкция", "/reconstruction"], ["Обследование", "/home-inspection"], ["Крыши", "/roof"], ["Летние кухни", "/summer-kitchen"]]
     : locale === "en"

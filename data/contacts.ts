@@ -2,7 +2,7 @@ export const contactConfig = {
   phone: "+995555128231",
   whatsapp: "https://wa.me/995555128231",
   telegram: "",
-  email: "ai769598@gmail.com",
+  email: "hello@ateliersweethome.ge",
   instagram: ""
 };
 

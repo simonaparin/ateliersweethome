@@ -43,7 +43,7 @@ export function ReconstructionV8Page({ copy }: { copy: ReconstructionPageCopy })
     name: siteConfig.name,
     url: siteConfig.siteUrl,
     telephone: "+995555128231",
-    email: "ai769598@gmail.com",
+    email: "hello@ateliersweethome.ge",
     areaServed: copy.seo.areaServed,
     availableLanguage: copy.seo.availableLanguage
   };

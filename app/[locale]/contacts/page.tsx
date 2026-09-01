@@ -13,7 +13,7 @@ const copy = {
     rows: [
       ["Phone", "+995555128231", "Call or send a message to start with a short conversation.", "tel:+995555128231"],
       ["WhatsApp", "Open WhatsApp", "Convenient for photographs, location and a short voice message.", "https://wa.me/995555128231"],
-      ["Email", "ai769598@gmail.com", "For a detailed description, files and unhurried correspondence.", "mailto:ai769598@gmail.com"],
+      ["Email", "hello@ateliersweethome.ge", "For a detailed description, files and unhurried correspondence.", "mailto:hello@ateliersweethome.ge"],
       ["Request form", "Describe the task", "Add photographs, location and a short description. The request is delivered directly to our team.", "#contact-form"]
     ],
     form: { title: "Describe the task", text: "Add photographs, the property location and a few words about the work you need.", fields: { name: "Name", contact: "Phone, WhatsApp, Telegram or email", location: "Property location", task: "What would you like to do?", start: "Preferred start date, optional", budget: "Budget range, optional", photos: "Photographs, up to 10 files" }, budgetHint: "It helps us understand the scale of the project.", submit: "Send the request", localMode: "", success: "Thank you. Your request has been received.", notSent: "" }
@@ -23,7 +23,7 @@ const copy = {
     rows: [
       ["ტელეფონი", "+995555128231", "დაგვირეკეთ ან მოგვწერეთ მოკლე საუბრის დასაწყებად.", "tel:+995555128231"],
       ["WhatsApp", "WhatsApp-ის გახსნა", "მოსახერხებელია ფოტოებისთვის, მისამართისა და მოკლე ხმოვანი შეტყობინებისთვის.", "https://wa.me/995555128231"],
-      ["ელფოსტა", "ai769598@gmail.com", "დეტალური აღწერის, ფაილებისა და მშვიდი მიმოწერისთვის.", "mailto:ai769598@gmail.com"],
+      ["ელფოსტა", "hello@ateliersweethome.ge", "დეტალური აღწერის, ფაილებისა და მშვიდი მიმოწერისთვის.", "mailto:hello@ateliersweethome.ge"],
       ["განაცხადის ფორმა", "ამოცანის აღწერა", "დაამატეთ ფოტოები, მდებარეობა და მოკლე აღწერა. განაცხადი პირდაპირ გუნდს გადაეცემა.", "#contact-form"]
     ],
     form: { title: "აღწერეთ ამოცანა", text: "დაამატეთ ფოტოები, ობიექტის მდებარეობა და რამდენიმე სიტყვა თქვენთვის საჭირო სამუშაოს შესახებ.", fields: { name: "სახელი", contact: "ტელეფონი, WhatsApp, Telegram ან ელფოსტა", location: "ობიექტის მდებარეობა", task: "რისი გაკეთება გსურთ?", start: "სასურველი დაწყების თარიღი, სურვილისამებრ", budget: "ბიუჯეტის დიაპაზონი, სურვილისამებრ", photos: "ფოტოები, მაქსიმუმ 10 ფაილი" }, budgetHint: "ეს გვეხმარება პროექტის მასშტაბის გაგებაში.", submit: "განაცხადის გაგზავნა", localMode: "", success: "გმადლობთ. თქვენი განაცხადი მიღებულია.", notSent: "" }
@@ -43,7 +43,7 @@ export default async function LocalContacts({ params }: { params: Promise<{ loca
   const { locale } = await params;
   const c = copy[locale];
   if (!c) notFound();
-  const schema = { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}/contacts`, telephone: "+995555128231", email: "ai769598@gmail.com", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian", contactPoint: [{ "@type": "ContactPoint", telephone: "+995555128231", contactType: "customer service", availableLanguage: locale === "en" ? "English" : "Georgian" }] };
+  const schema = { "@context": "https://schema.org", "@type": "ProfessionalService", name: siteConfig.name, url: `${siteConfig.siteUrl}/${locale}/contacts`, telephone: "+995555128231", email: "hello@ateliersweethome.ge", areaServed: ["Tbilisi", "Kakheti", "Georgia"], availableLanguage: locale === "en" ? "English" : "Georgian", contactPoint: [{ "@type": "ContactPoint", telephone: "+995555128231", contactType: "customer service", availableLanguage: locale === "en" ? "English" : "Georgian" }] };
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     <Header locale={locale} activePath="/contacts" contacts={contactConfig} content={{ brand: "Atelier Sweet Home", writeLabel: c.write }} />
