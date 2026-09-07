@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { ContactLinks } from "@/components/ContactLinks";
 import { InquiryForm } from "@/components/InquiryForm";
 import { RelatedDirections } from "@/components/RelatedDirections";
+import { SummerKitchenSmallCase } from "@/components/SummerKitchenSmallCase";
 import { ProfessionalApproach } from "@/components/ProfessionalApproach";
 import { RemoteKitchenCase } from "@/components/RemoteCollaboration";
 import { contactConfig } from "@/data/contacts";
@@ -152,6 +153,8 @@ export default function SummerKitchenPage() {
             ))}
           </div>
         </section>
+
+        <SummerKitchenSmallCase locale="ru" />
 
         <section className="section" aria-labelledby="situations-title">
           <div className="section-heading">

@@ -7,6 +7,7 @@ import { ProfessionalApproach } from "@/components/ProfessionalApproach";
 import { RemoteCollaboration, RemoteKitchenCase } from "@/components/RemoteCollaboration";
 import { ProjectCases } from "@/components/ProjectCases";
 import { ReconstructionHeroCollage, ReconstructionInteriorCollage } from "@/components/ReconstructionPhotoCollages";
+import { SummerKitchenSmallCase } from "@/components/SummerKitchenSmallCase";
 import { contactConfig } from "@/data/contacts";
 import { professionalApproach } from "@/data/professionalApproach";
 import { remoteCollaboration, remoteKitchenCase } from "@/data/remoteCollaboration";
@@ -56,6 +57,7 @@ export function LocalizedServiceLayout({ locale, service, hero, heroImage, page,
     {service === "summer-kitchen" ? <>
       {kitchenHeroBlock}<RemoteKitchenCase content={remoteKitchenCase[localizedLocale]} />
       <section className="section kitchen-gallery-section"><div className="section-heading"><p className="eyebrow">{labels.realCase}</p><h2>{caseTitle}</h2><p>{caseText}</p></div><div className="kitchen-gallery">{images.slice(1).map((image: any) => <figure key={image.src}><Image src={image.src} alt={image.alt} width={900} height={680} sizes="(max-width: 760px) 100vw, 50vw" />{image.caption ? <figcaption>{image.caption}</figcaption> : null}</figure>)}</div></section>
+      <SummerKitchenSmallCase locale={localizedLocale} />
       {situationsBlock}<Block id="site-check" eyebrow={labels.inspection} title={checkTitle} text={checkText} dark><ul className="check-list">{check.map((item: string) => <li key={item}>{item}</li>)}</ul></Block>{scopeBlock}
       <ProfessionalApproach content={professionalApproach[localizedLocale]["summer-kitchen"]} />
       {page.price ? <Block eyebrow={labels.price} title={page.price.title} text={page.price.text} /> : null}
