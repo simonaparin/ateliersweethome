@@ -3,8 +3,8 @@ import type { HomeInspectionCopy } from "./types";
 export const homeInspectionRu: HomeInspectionCopy = {
   locale: "ru", technicalLocale: "ru", route: "/home-inspection",
   seo: {
-    title: "Техническое обследование дома в Грузии | Atelier Sweet Home",
-    description: "Выездное техническое обследование частного дома перед покупкой или реконструкцией. Тбилиси, Кахетия и вся Грузия. PDF-отчёт с фотографиями, от 700 лари.",
+    title: "Проверка дома перед покупкой в Грузии | Atelier Sweet Home",
+    description: "Приезжаем, осматриваем дом и присылаем отчёт с фотографиями за 5 рабочих дней. Видно состояние стен, крыши, следы влаги. От 700 лари. Тбилиси, Кахетия, вся Грузия.",
     ogTitle: "Техническое обследование дома в Грузии | Atelier Sweet Home",
     ogDescription: "Выездное техническое обследование частного дома перед покупкой или реконструкцией. Тбилиси, Кахетия и вся Грузия. PDF-отчёт с фотографиями, от 700 лари.",
     serviceName: "Техническое обследование дома в Грузии", serviceType: "Выездное техническое обследование частного дома", areaServed: ["Georgia", "Tbilisi", "Kakheti"], availableLanguage: "Russian"
