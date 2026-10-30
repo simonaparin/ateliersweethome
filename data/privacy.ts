@@ -67,6 +67,7 @@ export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
           { lead: "Google Analytics.", text: "Мы смотрим, сколько людей заходит на сайт, откуда они приходят, какие страницы читают и как долго. Также считаем нажатия на телефон и WhatsApp и отправку форм. Для этого Google сохраняет в вашем браузере файлы cookie и получает сведения о вашем устройстве, браузере, примерном местоположении и посещённых страницах. Сами тексты заявок и ваши контакты мы в Analytics не передаём." },
           { text: "Подробные данные о действиях на сайте хранятся в Analytics 2 месяца, данные на уровне пользователя — до 14 месяцев." },
           { lead: "Реклама Google.", text: "Мы размещаем рекламу в Google. Analytics связана с нашими рекламными аккаунтами Google Ads, рекламная персонализация включена. Это значит, что Google может использовать сведения о посещении сайта, чтобы измерять рекламу и подбирать её для вас." },
+          { lead: "Microsoft Clarity.", text: "Мы смотрим, как люди пользуются сайтом: докуда листают и куда нажимают. Для этого Clarity сохраняет файлы cookie и записывает действия на странице. Текст, который вы вводите в формы, в записи скрывается." },
           { lead: "Хостинг.", text: "Сайт работает на Vercel. Как и любой хостинг, он обрабатывает технические данные запросов, например IP-адрес. Кроме того, IP-адрес ненадолго попадает в память сервера, чтобы защитить форму от спама: не больше 5 заявок за 10 минут с одного адреса. В базу данных мы его не записываем." }
         ]
       },
@@ -77,7 +78,7 @@ export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
       {
         title: "Кому передаются данные",
         blocks: [
-          { text: "Мы не продаём ваши данные. Их получают только сервисы, без которых сайт и заявки не работают:", list: ["Telegram — доставка и хранение заявок;", "Google — статистика и реклама;", "Vercel — работа сайта."] },
+          { text: "Мы не продаём ваши данные. Их получают только сервисы, без которых сайт и заявки не работают:", list: ["Telegram — доставка и хранение заявок;", "Google — статистика и реклама;", "Microsoft — запись действий на сайте;", "Vercel — работа сайта."] },
           { text: "Серверы этих компаний могут находиться за пределами Грузии. Мы также раскроем данные государственным органам, если этого требует закон." }
         ]
       },
@@ -145,6 +146,7 @@ export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
           { lead: "Google Analytics.", text: "We look at how many people visit the website, where they come from, which pages they read and for how long. We also count clicks on the phone number and WhatsApp, and form submissions. To do this, Google stores cookies in your browser and receives information about your device, browser, approximate location and the pages you visited. We do not pass the text of your requests or your contact details to Analytics." },
           { text: "Detailed data about actions on the website is kept in Analytics for 2 months, and user-level data for up to 14 months." },
           { lead: "Google advertising.", text: "We advertise on Google. Analytics is linked to our Google Ads accounts and ads personalization is turned on. This means Google may use information about your visit to measure advertising and select ads for you." },
+          { lead: "Microsoft Clarity.", text: "We look at how people use the website: how far they scroll and what they click. To do this, Clarity stores cookies and records actions on the page. Text you type into forms is masked in recordings." },
           { lead: "Hosting.", text: "The website runs on Vercel. Like any hosting provider, it processes technical request data such as your IP address. Your IP address is also held briefly in server memory to protect the form from spam: no more than 5 requests in 10 minutes from one address. We do not write it to a database." }
         ]
       },
@@ -155,7 +157,7 @@ export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
       {
         title: "Who receives your data",
         blocks: [
-          { text: "We do not sell your data. It is received only by the services the website and requests depend on:", list: ["Telegram — delivering and storing requests;", "Google — statistics and advertising;", "Vercel — running the website."] },
+          { text: "We do not sell your data. It is received only by the services the website and requests depend on:", list: ["Telegram — delivering and storing requests;", "Google — statistics and advertising;", "Microsoft — recording actions on the website;", "Vercel — running the website."] },
           { text: "These companies' servers may be located outside Georgia. We will also disclose data to public authorities where the law requires it." }
         ]
       },
@@ -223,6 +225,7 @@ export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
           { lead: "Google Analytics.", text: "ვხედავთ, რამდენი ადამიანი შემოდის ვებგვერდზე, საიდან მოდიან, რომელ გვერდებს კითხულობენ და რამდენ ხანს. ასევე ვითვლით ტელეფონსა და WhatsApp-ზე დაჭერებს და ფორმების გაგზავნას. ამისთვის Google თქვენს ბრაუზერში ინახავს cookie ფაილებს და იღებს ინფორმაციას თქვენი მოწყობილობის, ბრაუზერის, მიახლოებითი მდებარეობისა და მონახულებული გვერდების შესახებ. განაცხადების ტექსტებსა და თქვენს კონტაქტებს Analytics-ს არ ვაწვდით." },
           { text: "ვებგვერდზე მოქმედებების დეტალური მონაცემები Analytics-ში 2 თვე ინახება, მომხმარებლის დონის მონაცემები კი — 14 თვემდე." },
           { lead: "Google-ის რეკლამა.", text: "რეკლამას ვათავსებთ Google-ში. Analytics დაკავშირებულია ჩვენს Google Ads ანგარიშებთან და რეკლამის პერსონალიზაცია ჩართულია. ეს ნიშნავს, რომ Google-მა შეიძლება ვებგვერდზე თქვენი ვიზიტის შესახებ ინფორმაცია გამოიყენოს რეკლამის გასაზომად და თქვენთვის შესარჩევად." },
+          { lead: "Microsoft Clarity.", text: "ვხედავთ, როგორ იყენებენ ადამიანები ვებგვერდს: სად ჩადიან გვერდზე და რას აჭერენ. ამისთვის Clarity ინახავს cookie ფაილებს და იწერს მოქმედებებს გვერდზე. ფორმებში შეყვანილი ტექსტი ჩანაწერებში იმალება." },
           { lead: "ჰოსტინგი.", text: "ვებგვერდი მუშაობს Vercel-ზე. როგორც ნებისმიერი ჰოსტინგი, ის ამუშავებს მოთხოვნების ტექნიკურ მონაცემებს, მაგალითად IP-მისამართს. გარდა ამისა, IP-მისამართი მცირე ხნით ხვდება სერვერის მეხსიერებაში, რათა ფორმა სპამისგან დავიცვათ: ერთი მისამართიდან 10 წუთში არაუმეტეს 5 განაცხადისა. მონაცემთა ბაზაში მას არ ვწერთ." }
         ]
       },
@@ -233,7 +236,7 @@ export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
       {
         title: "ვინ იღებს მონაცემებს",
         blocks: [
-          { text: "თქვენს მონაცემებს არ ვყიდით. მათ იღებენ მხოლოდ ის სერვისები, რომელთა გარეშეც ვებგვერდი და განაცხადები არ იმუშავებს:", list: ["Telegram — განაცხადების მიწოდება და შენახვა;", "Google — სტატისტიკა და რეკლამა;", "Vercel — ვებგვერდის მუშაობა."] },
+          { text: "თქვენს მონაცემებს არ ვყიდით. მათ იღებენ მხოლოდ ის სერვისები, რომელთა გარეშეც ვებგვერდი და განაცხადები არ იმუშავებს:", list: ["Telegram — განაცხადების მიწოდება და შენახვა;", "Google — სტატისტიკა და რეკლამა;", "Microsoft — ვებგვერდზე მოქმედებების ჩაწერა;", "Vercel — ვებგვერდის მუშაობა."] },
           { text: "ამ კომპანიების სერვერები შეიძლება საქართველოს გარეთ მდებარეობდეს. მონაცემებს სახელმწიფო ორგანოებსაც გადავცემთ, თუ ამას კანონი მოითხოვს." }
         ]
       },

@@ -146,7 +146,7 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
   if (homeInspection) {
     const selectedFiles = homeInspection.selectedFiles.replace("{count}", String(files.length));
     return (
-      <form className="inquiry-form home-inspection-inquiry-form" id="contact-form-form" aria-label={homeInspection.ariaLabel} onSubmit={handleSubmit} noValidate>
+      <form data-clarity-mask="true" className="inquiry-form home-inspection-inquiry-form" id="contact-form-form" aria-label={homeInspection.ariaLabel} onSubmit={handleSubmit} noValidate>
         <input className="inquiry-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <input type="hidden" name="pageTitle" value={content.title} />
         <input type="hidden" name="pageUrl" value={typeof window === "undefined" ? "" : window.location.href} />
@@ -177,7 +177,7 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
   if (reconstruction) {
     const selectedFiles = reconstruction.selectedFiles.replace("{count}", String(files.length));
     return (
-      <form className="inquiry-form reconstruction-inquiry-form" id="contact-form-form" aria-label={reconstruction.ariaLabel} onSubmit={handleSubmit}>
+      <form data-clarity-mask="true" className="inquiry-form reconstruction-inquiry-form" id="contact-form-form" aria-label={reconstruction.ariaLabel} onSubmit={handleSubmit}>
         <input className="inquiry-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <input type="hidden" name="pageTitle" value={content.title} />
         <input type="hidden" name="pageUrl" value={typeof window === "undefined" ? "" : window.location.href} />
@@ -231,7 +231,7 @@ export function InquiryForm({ content, locale = "ru", variant = "default", recon
   }
 
   return (
-    <form className="inquiry-form inquiry-form--message" id="contact-form" onSubmit={handleSubmit}>
+    <form data-clarity-mask="true" className="inquiry-form inquiry-form--message" id="contact-form" onSubmit={handleSubmit}>
       <input className="inquiry-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <input type="hidden" name="pageTitle" value={content.title} />
       <input type="hidden" name="pageUrl" value={typeof window === "undefined" ? "" : window.location.href} />

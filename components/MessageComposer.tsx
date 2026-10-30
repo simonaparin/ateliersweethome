@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import type { FormEvent } from "react";
+import { trackEvent } from "@/components/Analytics";
 
 export type MessageComposerCopy = {
   message: string;
@@ -54,6 +55,7 @@ export function MessageComposer({ copy, pageTitle }: Props) {
       const response = await fetch("/api/inquiries", { method: "POST", body: data });
       if (!response.ok) throw new Error("send failed");
       setStatus("sent");
+      trackEvent("generate_lead", { form_type: "home", page_path: window.location.pathname });
     } catch {
       setError(copy.error);
       setStatus("error");
@@ -61,7 +63,7 @@ export function MessageComposer({ copy, pageTitle }: Props) {
   }
 
   return (
-    <form className="message-composer" onSubmit={onSubmit}>
+    <form className="message-composer" data-clarity-mask="true" onSubmit={onSubmit}>
       <input className="message-composer__honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <textarea name="message" defaultValue={copy.message} aria-label={copy.messageLabel} rows={5} required />
       <label className="message-composer__contact">
