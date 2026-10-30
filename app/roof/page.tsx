@@ -12,6 +12,7 @@ import { professionalApproach } from "@/data/professionalApproach";
 import { remoteCollaboration } from "@/data/remoteCollaboration";
 import { siteConfig } from "@/data/site";
 import { getRoofContent } from "@/lib/content";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 const content = getRoofContent("ru");
 const beforeImage = content.currentPhotos.images[0];
@@ -241,6 +242,7 @@ export default function RoofPage() {
         <div className="footer-meta">
           <span>RU / EN / KA</span>
           <span>{content.footer.copyright}</span>
+          <PrivacyLink locale="ru" />
         </div>
       </footer>
     </>

@@ -44,6 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: path === "/reconstruction" || path === "/home-inspection" ? 0.9 : 0.7
-    })))
+    }))),
+    ...["", "/en", "/ge"].map((prefix) => ({
+      url: `${siteConfig.siteUrl}${prefix}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.2
+    }))
   ];
 }

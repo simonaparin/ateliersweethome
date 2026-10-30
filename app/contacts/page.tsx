@@ -5,6 +5,7 @@ import { InquiryForm } from "@/components/InquiryForm";
 import { contactConfig } from "@/data/contacts";
 import { siteConfig } from "@/data/site";
 import type { FormContent } from "@/types/content";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 const headerContent = {
   brand: "Atelier Sweet Home",
@@ -175,6 +176,7 @@ export default function ContactsPage() {
         <div className="footer-meta">
           <span>RU / EN / KA</span>
           <span>© 2026 Atelier Sweet Home</span>
+          <PrivacyLink locale="ru" />
         </div>
       </footer>
     </>

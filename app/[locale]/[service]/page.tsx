@@ -26,6 +26,7 @@ import { reconstructionAdditions } from "@/content/ge/reconstruction.additions";
 import ruReconstruction from "@/content/ru/reconstruction.json";
 import ruRoof from "@/content/ru/roof.draft.json";
 import ruKitchen from "@/content/ru/summer-kitchen.draft.json";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 const pages = { en: { reconstruction: enReconstruction, roof: enRoof, "summer-kitchen": enKitchen }, ge: { reconstruction: geReconstruction, roof: geRoof, "summer-kitchen": geKitchen } } as const;
 type Locale = keyof typeof pages;
@@ -217,5 +218,5 @@ export default async function LocalizedService({ params }: { params: Promise<{ l
       <Section eyebrow="FAQ" title={page.faq?.title ?? t.faq}>{faq.length ? <div className="faq-list">{faq.map((item: any) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div> : null}</Section>
       <Section eyebrow={t.related} title={t.related} text={t.relatedText}><div className="direction-list">{related.map(([label, href]) => <a className="direction-row" href={`/${locale}/${href}`} key={href}><span>{label}</span></a>)}</div></Section>
       <section className="section contact-section"><div className="contact-copy"><p className="eyebrow">{t.contact}</p><h2>{form.title}</h2><p>{form.text}</p><ContactLinks contacts={contactConfig} /></div><InquiryForm content={formContent} locale={locale} /></section>
-    </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{t.footer}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© Atelier Sweet Home</span></div></footer></>;
+    </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{t.footer}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© Atelier Sweet Home</span><PrivacyLink locale={locale} /></div></footer></>;
 }

@@ -13,6 +13,7 @@ import { professionalApproach } from "@/data/professionalApproach";
 import { remoteKitchenCase } from "@/data/remoteCollaboration";
 import { siteConfig } from "@/data/site";
 import { getSummerKitchenContent } from "@/lib/content";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 const content = getSummerKitchenContent("ru");
 
@@ -259,6 +260,7 @@ export default function SummerKitchenPage() {
         <div className="footer-meta">
           <span>RU / EN / KA</span>
           <span>{content.footer.copyright}</span>
+          <PrivacyLink locale="ru" />
         </div>
       </footer>
     </>

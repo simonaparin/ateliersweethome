@@ -5,6 +5,7 @@ import type { ReconstructionPageCopy } from "@/content/reconstruction-v8";
 import { contactConfig } from "@/data/contacts";
 import { siteConfig } from "@/data/site";
 import type { FormContent } from "@/types/content";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 const heroImages = [
   { src: "/images/reconstruction/hero/house-t-restored-clean.png", width: 1320, height: 980 },
@@ -216,7 +217,7 @@ export function ReconstructionV8Page({ copy }: { copy: ReconstructionPageCopy })
 
       <footer className="site-footer">
         <div><strong>{siteConfig.name}</strong><span>{copy.footer.line}</span><span>{copy.footer.regions}</span></div>
-        <div className="footer-meta"><span>RU / EN / KA</span><span>{copy.footer.copyright}</span></div>
+        <div className="footer-meta"><span>RU / EN / KA</span><span>{copy.footer.copyright}</span><PrivacyLink locale={copy.locale} /></div>
       </footer>
     </>
   );

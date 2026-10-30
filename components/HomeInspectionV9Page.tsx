@@ -5,6 +5,7 @@ import type { HomeInspectionCopy } from "@/content/home-inspection-v9";
 import { contactConfig } from "@/data/contacts";
 import { siteConfig } from "@/data/site";
 import type { FormContent } from "@/types/content";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 const imageFiles = {
   stone: { src: "/images/reconstruction/hero/old-house-stone-facade.jpg", width: 1320, height: 980 },
@@ -117,7 +118,7 @@ export function HomeInspectionV9Page({ copy }: { copy: HomeInspectionCopy }) {
           <InquiryForm content={formContent} locale={copy.locale} variant="homeInspection" homeInspectionCopy={copy.contact.form} />
         </section>
       </main>
-      <footer className="site-footer"><div><strong>{siteConfig.name}</strong><span>{copy.footer.line}</span><span>{copy.footer.regions}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>{copy.footer.copyright}</span></div></footer>
+      <footer className="site-footer"><div><strong>{siteConfig.name}</strong><span>{copy.footer.line}</span><span>{copy.footer.regions}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>{copy.footer.copyright}</span><PrivacyLink locale={copy.locale} /></div></footer>
     </>
   );
 }

@@ -12,6 +12,7 @@ import { contactConfig } from "@/data/contacts";
 import { professionalApproach } from "@/data/professionalApproach";
 import { remoteCollaboration, remoteKitchenCase } from "@/data/remoteCollaboration";
 import { localizedReconstructionCases } from "@/data/projects";
+import { PrivacyLink } from "@/components/PrivacyLink";
 
 function Block({ id, eyebrow, title, text, dark = false, children }: { id?: string; eyebrow: string; title?: string; text?: string; dark?: boolean; children?: React.ReactNode }) {
   return <section id={id} className={`section ${dark ? "split-section dark-check-section" : ""}`}><div className="section-heading"><p className="eyebrow">{eyebrow}</p>{title ? <h2>{title}</h2> : null}{text ? <p>{text}</p> : null}</div>{children}</section>;
@@ -64,5 +65,5 @@ export function LocalizedServiceLayout({ locale, service, hero, heroImage, page,
       <Block eyebrow={labels.start} title={page.start?.title}><ol className="steps-list" id="work-start">{start.map((item: string) => <li key={item}>{item}</li>)}</ol></Block>
       {faqBlock}{relatedBlock}{contactBlock}
     </> : null}
-  </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{labels.footer}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© Atelier Sweet Home</span></div></footer></>;
+  </main><footer className="site-footer"><div><strong>Atelier Sweet Home</strong><span>{labels.footer}</span></div><div className="footer-meta"><span>RU / EN / KA</span><span>© Atelier Sweet Home</span><PrivacyLink locale={locale as "en" | "ge"} /></div></footer></>;
 }
