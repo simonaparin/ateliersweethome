@@ -4,21 +4,24 @@ import { Header } from "@/components/Header";
 import { PrivacyLink } from "@/components/PrivacyLink";
 import { contactConfig } from "@/data/contacts";
 import { privacyPolicy } from "@/data/privacy";
-import type { PrivacyLocale } from "@/data/privacy";
+import type { PrivacyContent, PrivacyLocale } from "@/data/privacy";
+import { termsOfUse } from "@/data/terms";
 import { siteConfig } from "@/data/site";
 
-const privacyPath = (locale: PrivacyLocale) => (locale === "ru" ? "/privacy" : `/${locale}/privacy`);
+const localePath = (locale: PrivacyLocale, path: string) => (locale === "ru" ? path : `/${locale}${path}`);
 
-export function privacyMetadata(locale: PrivacyLocale): Metadata {
-  const c = privacyPolicy[locale];
+function legalMetadata(locale: PrivacyLocale, c: PrivacyContent, path: string): Metadata {
   const title = `${c.title} | Atelier Sweet Home`;
   return {
     title,
     description: c.description,
-    alternates: { canonical: privacyPath(locale), languages: { ru: "/privacy", en: "/en/privacy", ka: "/ge/privacy" } },
-    openGraph: { title, description: c.description, url: privacyPath(locale), siteName: siteConfig.name, type: "website" }
+    alternates: { canonical: localePath(locale, path), languages: { ru: path, en: `/en${path}`, ka: `/ge${path}` } },
+    openGraph: { title, description: c.description, url: localePath(locale, path), siteName: siteConfig.name, type: "website" }
   };
 }
+
+export const privacyMetadata = (locale: PrivacyLocale) => legalMetadata(locale, privacyPolicy[locale], "/privacy");
+export const termsMetadata = (locale: PrivacyLocale) => legalMetadata(locale, termsOfUse[locale], "/terms");
 
 const linkPattern = /(hello@ateliersweethome\.ge|tools\.google\.com\/dlpage\/gaoptout|myadcenter\.google\.com|myaccount\.google\.com\/permissions)/;
 
@@ -29,11 +32,10 @@ function withLinks(text: string): ReactNode[] {
   });
 }
 
-export function PrivacyPage({ locale }: { locale: PrivacyLocale }) {
-  const c = privacyPolicy[locale];
+function LegalPage({ locale, c, path }: { locale: PrivacyLocale; c: PrivacyContent; path: string }) {
   return (
     <>
-      <Header locale={locale} activePath="/privacy" contacts={contactConfig} content={{ brand: siteConfig.name, writeLabel: c.write }} />
+      <Header locale={locale} activePath={path} contacts={contactConfig} content={{ brand: siteConfig.name, writeLabel: c.write }} />
       <main className="privacy-page">
         <article>
           <p className="eyebrow">{siteConfig.name}</p>
@@ -60,3 +62,6 @@ export function PrivacyPage({ locale }: { locale: PrivacyLocale }) {
     </>
   );
 }
+
+export const PrivacyPage = ({ locale }: { locale: PrivacyLocale }) => <LegalPage locale={locale} c={privacyPolicy[locale]} path="/privacy" />;
+export const TermsPage = ({ locale }: { locale: PrivacyLocale }) => <LegalPage locale={locale} c={termsOfUse[locale]} path="/terms" />;

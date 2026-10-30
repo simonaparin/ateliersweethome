@@ -18,6 +18,12 @@ export const privacyLinkLabels: Record<PrivacyLocale, string> = {
   ge: "კონფიდენციალურობის პოლიტიკა"
 };
 
+export const termsLinkLabels: Record<PrivacyLocale, string> = {
+  ru: "Условия использования",
+  en: "Terms of Use",
+  ge: "გამოყენების პირობები"
+};
+
 export const privacyPolicy: Record<PrivacyLocale, PrivacyContent> = {
   ru: {
     title: "Политика конфиденциальности",
